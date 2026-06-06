@@ -584,7 +584,7 @@ function renderResult(){
         ? "With a deadline inside three weeks, the move is a rapid triage: what's salvageable now, what to disclose accurately, and a 10-day fix list. Book a 30-minute consult."
         : "A flat-fee Readiness Audit gets every gap above closed and evidenced in about two weeks — no software to buy, no managed-services contract. Book a 30-minute consult to scope it."}</p>
       <div class="btn-row">
-        <a href="https://cleartobind.com" class="btn bind no-print">Book a 30-minute consult &nbsp;→</a>
+        <a href="mailto:hello@cleartobind.com?subject=Cyber%20insurance%20readiness%20consult&body=Hi%20ClearToBind%2C%0A%0AI%20just%20completed%20the%20Readiness%20Scorecard%20and%20I%27d%20like%20to%20book%20a%2030-minute%20consult.%0A%0ACompany%3A%20%0AEmployees%3A%20%0ARenewal%20date%20(if%20any)%3A%20%0A%0AThanks%2C" class="btn bind no-print">Book a 30-minute consult &nbsp;→</a>
         <button class="btn ghost no-print" style="color:#c7d0db;border-color:rgba(255,255,255,.25)" onclick="window.print()">Download PDF</button>
       </div>
     </div>
@@ -631,7 +631,7 @@ function renderResult(){
 /* ---------- lead capture gate ---------- */
 // ▶ TO RECEIVE LEADS: paste your Formspree URL, or a Make.com / Zapier / serverless
 //   webhook here. Leave "" and submissions still log to the console for testing.
-const LEAD_ENDPOINT = "";
+const LEAD_ENDPOINT = "https://formspree.io/f/mjgdybyw";
 
 function renderGate(){
   return `
@@ -696,10 +696,26 @@ function submitLead(){
 function sendLead(lead){
   try{
     console.log("[ClearToBind] lead captured →", lead);
-    if(LEAD_ENDPOINT){
-      fetch(LEAD_ENDPOINT,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(lead) })
-        .catch(e=>console.warn("[ClearToBind] lead post failed:", e));
-    }
+    if(!LEAD_ENDPOINT) return;
+    var payload = {
+      name: lead.first,
+      email: lead.email,
+      company: lead.company,
+      role: lead.role || "",
+      broker_email: lead.broker || "",
+      readiness_score: lead.score,
+      verdict: lead.verdict,
+      industry: (lead.profile && lead.profile.industry) || "",
+      team_size: (lead.profile && lead.profile.size) || "",
+      renewal_timing: (lead.profile && lead.profile.renewal) || "",
+      submitted_at: lead.capturedAt,
+      _subject: "New ClearToBind lead: " + (lead.company || lead.first || "Scorecard")
+    };
+    fetch(LEAD_ENDPOINT,{
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function(e){ console.warn("[ClearToBind] lead post failed:", e); });
   }catch(e){ console.warn(e); }
 }
 
