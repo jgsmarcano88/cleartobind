@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ClearToBind — Cyber Insurance Readiness Scorecard</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,15 +58,14 @@
     display:flex;align-items:center;justify-content:space-between;
     padding-bottom:18px;margin-bottom:34px;border-bottom:1px solid var(--hair-2);
   }
-  .brand{display:flex;align-items:baseline;gap:10px;letter-spacing:-.01em}
+  .brand{display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
   .brand .mark{
     font-family:'Spectral',serif;font-weight:700;font-size:23px;color:var(--navy);
     letter-spacing:-.02em;
   }
   .brand .mark b{color:var(--bind);font-weight:700}
   .brand .seal{
-    width:26px;height:26px;border-radius:50%;border:1.5px solid var(--bind);
-    display:grid;place-items:center;color:var(--bind);font-size:13px;flex:0 0 auto;
+    width:28px;height:28px;flex:0 0 auto;display:block;
   }
   .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
     letter-spacing:.04em;text-transform:uppercase}
@@ -229,6 +229,36 @@
   .cta-block p{color:#c7d0db;font-size:14.5px;margin-top:10px;max-width:48ch;position:relative}
   .cta-block .btn-row{margin-top:22px;position:relative}
 
+  /* lead capture gate */
+  .gate{margin:30px 30px 0;border:1.5px solid var(--bind);border-radius:16px;
+    background:linear-gradient(180deg,var(--bind-soft),var(--card));padding:30px 32px 26px;position:relative}
+  .gate .eyebrow{color:var(--bind)}
+  .gate h3{font-family:'Spectral',serif;font-weight:600;font-size:23px;color:var(--navy);
+    margin:8px 0 16px;line-height:1.18;letter-spacing:-.012em}
+  .gate .glist{display:flex;flex-wrap:wrap;gap:9px 20px;margin:0 0 22px}
+  .gate .glist span{font-size:13px;color:var(--ink-soft);display:flex;align-items:center;gap:7px}
+  .gate .glist span::before{content:"✓";color:var(--bind);font-weight:700}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px}
+  @media(max-width:560px){.form-row{grid-template-columns:1fr}}
+  .fld{display:flex;flex-direction:column;gap:6px}
+  .fld label{font-size:12px;font-weight:600;color:var(--ink-soft)}
+  .fld input{font-family:inherit;font-size:15px;color:var(--ink);background:var(--card);
+    border:1.5px solid var(--hair-2);border-radius:10px;padding:12px 13px;transition:border-color .15s,background .15s}
+  .fld input:focus{outline:none;border-color:var(--bind);background:#fff}
+  .fld input.err{border-color:var(--risk);background:#fbf2f0}
+  .opt-broker{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-soft);
+    margin:6px 0 16px;cursor:pointer;user-select:none}
+  .opt-broker input{width:16px;height:16px;accent-color:var(--bind);cursor:pointer}
+  .gactions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .skip{background:none;border:none;font-family:inherit;font-size:13.5px;color:var(--muted);
+    cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .skip:hover{color:var(--ink)}
+  .errmsg{color:var(--risk);font-size:12.5px;margin-top:10px;min-height:1em;font-weight:500}
+  .privacy{font-size:11.5px;color:var(--muted);margin-top:14px;line-height:1.5;max-width:56ch}
+  .ribbon{margin:30px 30px 4px;border-radius:12px;background:var(--bind-soft);border:1px solid var(--bind);
+    padding:14px 18px;display:flex;align-items:center;gap:11px;color:var(--bind);font-weight:600;font-size:14px}
+  .ribbon .ic{font-size:17px;flex:0 0 auto}
+
   .disclaimer{margin:28px 30px 0;font-size:11.5px;color:var(--muted);line-height:1.55;
     border-top:1px solid var(--hair);padding-top:16px}
 
@@ -250,7 +280,7 @@
 <div class="wrap">
   <header class="mast">
     <div class="brand">
-      <span class="seal">✓</span>
+      <svg class="seal" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="32" cy="32" r="29.5" fill="#FFFDF8" stroke="#1C6E54" stroke-width="2.6"/><circle cx="32" cy="32" r="24.5" fill="none" stroke="#1C6E54" stroke-width="1.6"/><path d="M20.5 33 l8 8 l15.5 -18.5" fill="none" stroke="#1C6E54" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="mark">Clear<b>To</b>Bind</span>
     </div>
     <span class="tag">Insurance Readiness Scorecard</span>
@@ -341,7 +371,7 @@ const FIXES = {
 };
 
 /* ---------- state ---------- */
-const state = {step:"intro", qi:0, answers:{}, profile:{}};
+const state = {step:"intro", qi:0, answers:{}, profile:{}, captured:false, lead:null};
 const app = document.getElementById("app");
 const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
 
@@ -535,6 +565,41 @@ function renderResult(){
 
   const renewalUrgent = state.profile.renewal==="Inside 3 weeks";
 
+  const ribbon = (state.lead && state.lead.email)
+    ? `<div class="ribbon"><span class="ic">✅</span><span>Thanks${state.lead.first?(", "+esc(state.lead.first)):""} — your full breakdown is below. Use "Download PDF" to save or share it.</span></div>`
+    : ``;
+
+  const detailHtml = `
+    ${ribbon}
+    <div class="sec-title">Control-by-control scorecard</div>
+    <div class="ctrl-list">${rows}</div>
+
+    <div class="sec-title">Your highest-leverage fixes</div>
+    <div class="fixes">${fixHtml}</div>
+
+    <div class="cta-block">
+      <div class="eyebrow">Next step</div>
+      <h3>${renewalUrgent ? "Your renewal is close — let's triage it." : "Turn this scorecard into a clean submission."}</h3>
+      <p>${renewalUrgent
+        ? "With a deadline inside three weeks, the move is a rapid triage: what's salvageable now, what to disclose accurately, and a 10-day fix list. Book a 30-minute consult."
+        : "A flat-fee Readiness Audit gets every gap above closed and evidenced in about two weeks — no software to buy, no managed-services contract. Book a 30-minute consult to scope it."}</p>
+      <div class="btn-row">
+        <a href="https://cleartobind.com" class="btn bind no-print">Book a 30-minute consult &nbsp;→</a>
+        <button class="btn ghost no-print" style="color:#c7d0db;border-color:rgba(255,255,255,.25)" onclick="window.print()">Download PDF</button>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      This Readiness Scorecard is an indicative self-assessment based on the answers provided. It is not an
+      insurance quote, a coverage decision, or a warranty of insurability, and it does not constitute legal or
+      professional advice. Underwriting outcomes are determined solely by carriers. You remain the attesting
+      party on any insurance application.
+    </div>
+
+    <div class="btn-row no-print" style="margin:24px 30px 30px">
+      <button class="btn ghost" onclick="restart()">↻ Retake the assessment</button>
+    </div>`;
+
   app.innerHTML = `
   <section class="panel fade d1" style="overflow:hidden">
     <div class="verdict-head">
@@ -558,41 +623,89 @@ function renderResult(){
       </div>
     </div>
 
-    <div class="sec-title">Control-by-control scorecard</div>
-    <div class="ctrl-list">${rows}</div>
-
-    <div class="sec-title">Your highest-leverage fixes</div>
-    <div class="fixes">${fixHtml}</div>
-
-    <div class="cta-block">
-      <div class="eyebrow">Next step</div>
-      <h3>${renewalUrgent ? "Your renewal is close — let's triage it." : "Turn this scorecard into a clean submission."}</h3>
-      <p>${renewalUrgent
-        ? "With a deadline inside three weeks, the move is a rapid triage: what's salvageable now, what to disclose accurately, and a 10-day fix list. Book a 30-minute consult."
-        : "A flat-fee Readiness Audit gets every gap above closed and evidenced in about two weeks — no software to buy, no managed-services contract. Book a 30-minute consult to scope it."}</p>
-      <div class="btn-row">
-        <a href="https://cleartobind.com" class="btn bind no-print">Book a 30-minute consult &nbsp;→</a>
-        <button class="btn ghost no-print" style="color:#c7d0db;border-color:rgba(255,255,255,.25)" onclick="window.print()">Save / print my result</button>
-      </div>
-    </div>
-
-    <div class="disclaimer">
-      This Readiness Scorecard is an indicative self-assessment based on the answers provided. It is not an
-      insurance quote, a coverage decision, or a warranty of insurability, and it does not constitute legal or
-      professional advice. Underwriting outcomes are determined solely by carriers. You remain the attesting
-      party on any insurance application.
-    </div>
-
-    <div class="btn-row no-print" style="margin:24px 30px 30px">
-      <button class="btn ghost" onclick="restart()">↻ Retake the assessment</button>
-    </div>
+    ${state.captured ? detailHtml : renderGate()}
   </section>`;
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
+/* ---------- lead capture gate ---------- */
+// ▶ TO RECEIVE LEADS: paste your Formspree URL, or a Make.com / Zapier / serverless
+//   webhook here. Leave "" and submissions still log to the console for testing.
+const LEAD_ENDPOINT = "";
+
+function renderGate(){
+  return `
+  <div class="gate">
+    <div class="eyebrow">Your full report</div>
+    <h3>See exactly where you can prove it — and where you can't.</h3>
+    <div class="glist">
+      <span>Control-by-control scorecard</span>
+      <span>Your top 3 prioritized fixes</span>
+      <span>A shareable PDF</span>
+      <span>Optional copy to your broker</span>
+    </div>
+    <div class="form-row">
+      <div class="fld"><label>First name</label><input id="f_first" type="text" autocomplete="given-name" placeholder="Alex"></div>
+      <div class="fld"><label>Work email</label><input id="f_email" type="email" autocomplete="email" placeholder="alex@yourcompany.com"></div>
+    </div>
+    <div class="form-row">
+      <div class="fld"><label>Company</label><input id="f_company" type="text" autocomplete="organization" placeholder="Your company"></div>
+      <div class="fld"><label>Role <span style="color:var(--muted);font-weight:400">(optional)</span></label><input id="f_role" type="text" placeholder="Owner / CFO / COO"></div>
+    </div>
+    <label class="opt-broker"><input id="f_brokerchk" type="checkbox" onchange="document.getElementById('brokerwrap').style.display=this.checked?'block':'none'"> Email a copy to my insurance broker too</label>
+    <div id="brokerwrap" style="display:none;margin-bottom:14px">
+      <div class="fld"><label>Broker email</label><input id="f_broker" type="email" placeholder="broker@agency.com"></div>
+    </div>
+    <div class="gactions">
+      <button class="btn bind" onclick="submitLead()">Unlock my full report &nbsp;→</button>
+      <button class="skip" onclick="skipGate()">Skip — just show my results on screen</button>
+    </div>
+    <div class="errmsg" id="gate_err"></div>
+    <div class="privacy">We'll email your report and may follow up about getting insurable. No spam, unsubscribe anytime, and we never share your details.</div>
+  </div>`;
+}
+
+function skipGate(){ state.captured=true; state.lead=null; renderResult(); }
+
+function submitLead(){
+  const val = id => { const el=document.getElementById(id); return el?el.value.trim():""; };
+  const first=val("f_first"), email=val("f_email"), company=val("f_company"), role=val("f_role");
+  const brokerOn=document.getElementById("f_brokerchk") && document.getElementById("f_brokerchk").checked;
+  const broker=val("f_broker");
+  const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const errEl=document.getElementById("gate_err");
+  ["f_first","f_email","f_company"].forEach(i=>{const e=document.getElementById(i); if(e)e.classList.remove("err");});
+
+  let err="";
+  if(!first){ err="Please add your first name."; mark("f_first"); }
+  else if(!emailOk){ err="Please enter a valid work email."; mark("f_email"); }
+  else if(!company){ err="Please add your company name."; mark("f_company"); }
+  else if(brokerOn && broker && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(broker)){ err="That broker email doesn't look right."; }
+  if(err){ if(errEl) errEl.textContent=err; return; }
+
+  state.lead={ first, email, company, role, broker:brokerOn?broker:"",
+    score:state.result.overall, verdict:state.result.verdict,
+    profile:Object.assign({}, state.profile), capturedAt:new Date().toISOString() };
+  state.captured=true;
+  sendLead(state.lead);
+  renderResult();
+
+  function mark(id){ const e=document.getElementById(id); if(e)e.classList.add("err"); }
+}
+
+function sendLead(lead){
+  try{
+    console.log("[ClearToBind] lead captured →", lead);
+    if(LEAD_ENDPOINT){
+      fetch(LEAD_ENDPOINT,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(lead) })
+        .catch(e=>console.warn("[ClearToBind] lead post failed:", e));
+    }
+  }catch(e){ console.warn(e); }
+}
+
 /* ---------- nav ---------- */
 function go(step){ state.step=step; if(step==="quiz") state.qi=0; render(); window.scrollTo({top:0,behavior:"instant"}); }
-function restart(){ state.answers={}; state.profile={}; state.qi=0; go('intro'); }
+function restart(){ state.answers={}; state.profile={}; state.qi=0; state.captured=false; state.lead=null; go('intro'); }
 
 // keyboard: number keys pick options on quiz
 document.addEventListener("keydown",e=>{
