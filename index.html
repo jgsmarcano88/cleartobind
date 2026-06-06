@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ClearToBind — Get insurable in two weeks. Flat fee, no lock-in.</title>
+<meta name="description" content="Cyber insurance readiness for small business. We get your 5–50-person company through underwriting in two weeks — with the evidence to back every answer. Vendor-neutral. Flat fee. No lock-in." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F0E7; --paper-2:#EFEAE0; --card:#FFFDF8;
+    --ink:#181C22; --ink-soft:#3C434C; --muted:#6B7480;
+    --hair:#E2DBCC; --hair-2:#D6CDBA;
+    --navy:#15233B; --navy-2:#22344f;
+    --bind:#1C6E54; --bind-soft:#E4EFE9;
+    --warn:#B97520; --risk:#A2433A; --gold:#9C7B3A;
+    --shadow:0 1px 2px rgba(20,20,20,.04), 0 18px 50px -28px rgba(21,35,59,.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+  body{font-family:'Hanken Grotesk',sans-serif;color:var(--ink);background:var(--paper);
+    line-height:1.55;position:relative;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E")}
+
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1080px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--gold);font-weight:500}
+  .secnum{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--bind)}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:rgba(244,240,231,.82);border-bottom:1px solid var(--hair-2)}
+  nav .container{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand .seal{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--bind);
+    display:grid;place-items:center;color:var(--bind);font-size:13px}
+  .brand .mark{font-family:'Spectral',serif;font-weight:700;font-size:21px;color:var(--navy);letter-spacing:-.02em}
+  .brand .mark b{color:var(--bind)}
+  .navlinks{display:flex;align-items:center;gap:30px}
+  .navlinks a.link{font-size:14px;font-weight:600;color:var(--ink-soft);transition:color .15s}
+  .navlinks a.link:hover{color:var(--navy)}
+  @media(max-width:760px){.navlinks a.link{display:none}}
+
+  .btn{font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15px;cursor:pointer;
+    border:none;border-radius:10px;padding:12px 22px;background:var(--navy);color:#fff;
+    transition:transform .15s, box-shadow .2s, background .2s;
+    box-shadow:0 12px 26px -16px rgba(21,35,59,.7);display:inline-block}
+  .btn:hover{transform:translateY(-2px);background:var(--navy-2)}
+  .btn.bind{background:var(--bind);box-shadow:0 12px 26px -16px rgba(28,110,84,.7)}
+  .btn.bind:hover{background:#1f7d60}
+  .btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--hair-2);box-shadow:none}
+  .btn.ghost:hover{background:var(--card);transform:none;border-color:var(--navy)}
+  .btn.sm{padding:9px 18px;font-size:14px}
+
+  /* ---------- hero ---------- */
+  .hero{padding:78px 0 70px;position:relative}
+  .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
+  @media(max-width:860px){.hero .grid{grid-template-columns:1fr;gap:40px}.hero{padding:54px 0 50px}}
+  .hero h1{font-family:'Spectral',serif;font-weight:600;font-size:clamp(40px,6.4vw,68px);
+    line-height:1.0;letter-spacing:-.03em;color:var(--navy);margin:20px 0}
+  .hero h1 em{font-style:italic;color:var(--bind)}
+  .hero .sub{font-size:19px;color:var(--ink-soft);max-width:46ch}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+  .microproof{margin-top:15px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);
+    letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+  .microproof::before{content:"●";color:var(--bind);font-size:8px}
+  .trust{margin-top:34px;display:flex;flex-wrap:wrap;gap:7px 7px;max-width:46ch}
+  .trust .t{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.03em;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--hair);padding:5px 10px;border-radius:999px}
+
+  /* hero card — a mini "assessment" mock */
+  .hero-card{background:var(--card);border:1px solid var(--hair);border-radius:18px;
+    box-shadow:var(--shadow);padding:26px;position:relative;transform:rotate(1.2deg)}
+  .hero-card::before{content:"";position:absolute;inset:0;border-radius:18px;
+    border:1px solid var(--hair);transform:rotate(-2.4deg);z-index:-1;background:var(--paper-2)}
+  .hc-top{display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--hair);padding-bottom:14px;margin-bottom:16px}
+  .hc-top .lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted)}
+  .hc-stamp{font-family:'Spectral',serif;font-weight:700;color:var(--bind);font-size:15px;
+    border:2px double var(--bind);border-radius:8px;padding:4px 10px;transform:rotate(-4deg)}
+  .hc-row{display:flex;align-items:center;gap:12px;padding:9px 0}
+  .hc-row .nm{font-size:13.5px;color:var(--ink-soft);flex:1}
+  .hc-row .bar{width:70px;height:6px;background:var(--paper-2);border-radius:999px;overflow:hidden;border:1px solid var(--hair)}
+  .hc-row .bar i{display:block;height:100%;border-radius:999px}
+  .hc-row .pf{font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.06em;
+    padding:3px 7px;border-radius:6px;text-transform:uppercase}
+  .pf.p{background:var(--bind-soft);color:var(--bind)} .pf.g{background:#F1E0DC;color:var(--risk)}
+  .pf.w{background:#F4E9D8;color:var(--warn)}
+  .hc-caption{margin-top:18px;text-align:center;font-size:12.5px;color:var(--muted);
+    font-family:'IBM Plex Mono',monospace;letter-spacing:.01em;max-width:40ch;
+    margin-left:auto;margin-right:auto;line-height:1.5}
+
+  /* ---------- sections ---------- */
+  section.band{padding:74px 0;position:relative;z-index:1}
+  .band.alt{background:linear-gradient(var(--paper-2),var(--paper-2))}
+  .band.ink{background:var(--navy);color:#fff}
+  .sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:34px}
+  h2{font-family:'Spectral',serif;font-weight:600;font-size:clamp(28px,4.6vw,44px);
+    line-height:1.06;letter-spacing:-.02em;color:var(--navy)}
+  .band.ink h2{color:#fff}
+  .lead{font-size:18px;color:var(--ink-soft);max-width:60ch}
+  .band.ink .lead{color:#c7d0db}
+
+  /* problem cards */
+  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+  @media(max-width:760px){.prob-grid{grid-template-columns:1fr}}
+  .prob{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:24px;
+    box-shadow:var(--shadow)}
+  .prob .ic{font-size:24px}
+  .prob h3{font-family:'Spectral',serif;font-weight:600;font-size:19px;color:var(--navy);margin:12px 0 8px}
+  .prob p{font-size:14.5px;color:var(--ink-soft)}
+
+  /* proof moment */
+  .proof-wrap{text-align:center;max-width:780px;margin:0 auto}
+  .proof-wrap .big{font-family:'Spectral',serif;font-weight:500;font-size:clamp(28px,5vw,46px);
+    line-height:1.12;letter-spacing:-.02em;color:#fff;margin:18px 0}
+  .proof-wrap .big em{font-style:italic;color:#8fd3bb}
+  .proof-wrap p{color:#c7d0db;font-size:17px;max-width:56ch;margin:0 auto}
+
+  /* controls grid */
+  .ctrl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
+  @media(max-width:860px){.ctrl-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.ctrl-grid{grid-template-columns:1fr}}
+  .ctrl-card{background:var(--card);border:1px solid var(--hair);border-radius:13px;padding:20px;
+    transition:transform .2s, box-shadow .2s}
+  .ctrl-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .ctrl-card .ic{font-size:22px}
+  .ctrl-card h4{font-size:15px;font-weight:700;color:var(--navy);margin:11px 0 5px}
+  .ctrl-card p{font-size:13px;color:var(--muted);line-height:1.45}
+
+  /* tiers */
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px}
+  @media(max-width:900px){.tiers{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.tiers{grid-template-columns:1fr}}
+  .tier{background:var(--card);border:1px solid var(--hair);border-radius:16px;padding:26px 22px;
+    display:flex;flex-direction:column;position:relative;box-shadow:var(--shadow)}
+  .tier.feature{border:1.5px solid var(--bind);box-shadow:0 24px 60px -34px rgba(28,110,84,.5)}
+  .tier .flag{position:absolute;top:-11px;left:22px;background:var(--bind);color:#fff;
+    font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px}
+  .tier .tname{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--gold)}
+  .tier h3{font-family:'Spectral',serif;font-weight:600;font-size:21px;color:var(--navy);margin:6px 0 2px}
+  .tier .price{font-size:15px;color:var(--ink);font-weight:700;margin:10px 0 4px}
+  .tier .price b{font-family:'Spectral',serif;font-size:26px;color:var(--navy)}
+  .tier .when{font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono',monospace}
+  .tier ul{list-style:none;margin:16px 0 0;padding:0;flex:1}
+  .tier li{font-size:13.5px;color:var(--ink-soft);padding:6px 0 6px 22px;position:relative;line-height:1.4}
+  .tier li::before{content:"✓";position:absolute;left:0;color:var(--bind);font-weight:700}
+
+  /* why us */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
+  @media(max-width:820px){.why-grid{grid-template-columns:1fr;gap:30px}}
+  .cred{display:flex;flex-direction:column;gap:12px}
+  .cred .item{display:flex;gap:14px;align-items:flex-start}
+  .cred .item .k{width:30px;height:30px;border-radius:8px;background:var(--bind-soft);color:var(--bind);
+    display:grid;place-items:center;flex:0 0 auto;font-size:15px}
+  .cred .item .t{font-size:15px;color:var(--ink)}
+  .cred .item .t b{color:var(--navy)}
+  .logos{margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);
+    letter-spacing:.04em;line-height:2}
+  .logos span{color:var(--ink);font-weight:500}
+
+  /* dont-do */
+  .dont{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
+  @media(max-width:680px){.dont{grid-template-columns:1fr}}
+  .dont .d{display:flex;gap:12px;align-items:flex-start;background:var(--card);
+    border:1px solid var(--hair);border-radius:12px;padding:18px 20px}
+  .dont .d .x{color:var(--bind);font-size:18px;flex:0 0 auto}
+  .dont .d .t b{display:block;color:var(--navy);font-size:15px;margin-bottom:2px}
+  .dont .d .t span{font-size:13.5px;color:var(--muted)}
+
+  /* scorecard cta band */
+  .sc-cta{background:var(--card);border:1px solid var(--hair);border-radius:20px;
+    padding:46px 40px;display:flex;justify-content:space-between;align-items:center;gap:30px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .sc-cta::after{content:"";position:absolute;right:-60px;bottom:-60px;width:240px;height:240px;
+    border-radius:50%;background:radial-gradient(circle,var(--bind-soft),transparent 70%)}
+  @media(max-width:760px){.sc-cta{flex-direction:column;text-align:center;padding:36px 24px}}
+  .sc-cta h2{font-size:clamp(26px,4vw,36px);position:relative}
+  .sc-cta p{color:var(--ink-soft);margin-top:10px;max-width:42ch;position:relative}
+  .get-list{list-style:none;margin:14px 0 0;padding:0;position:relative}
+  .get-list li{font-size:14.5px;color:var(--ink-soft);padding:5px 0 5px 26px;position:relative;max-width:46ch}
+  .get-list li::before{content:"→";position:absolute;left:0;color:var(--bind);font-weight:700}
+  .get-list b{color:var(--navy)}
+
+  /* faq */
+  .faq-item{border-bottom:1px solid var(--hair);padding:20px 0}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:20px}
+  .faq-q h4{font-family:'Spectral',serif;font-weight:600;font-size:19px;color:var(--navy)}
+  .faq-q .pl{font-size:22px;color:var(--bind);transition:transform .25s;font-weight:300}
+  .faq-item.open .faq-q .pl{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--ink-soft);font-size:15px}
+  .faq-item.open .faq-a{max-height:240px}
+  .faq-a p{padding-top:12px;max-width:64ch}
+
+  /* footer */
+  footer{background:var(--navy);color:#c7d0db;padding:48px 0 36px;position:relative;z-index:1}
+  footer .container{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+  footer .brand .mark{color:#fff}
+  footer .tagline{color:#8fd3bb;font-family:'IBM Plex Mono',monospace;font-size:12px;
+    letter-spacing:.04em;margin-top:12px}
+  footer .legal{font-size:12px;color:#7a8696;max-width:52ch;margin-top:18px;line-height:1.6}
+  footer .fnav{display:flex;flex-direction:column;gap:9px;font-size:14px}
+  footer .fnav a:hover{color:#fff}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="brand" href="#top">
+      <span class="seal">✓</span><span class="mark">Clear<b>To</b>Bind</span>
+    </a>
+    <div class="navlinks">
+      <a class="link" href="#problem">The problem</a>
+      <a class="link" href="#controls">What carriers check</a>
+      <a class="link" href="#offer">How it works</a>
+      <a class="link" href="#faq">FAQ</a>
+      <a class="btn bind sm" href="cleartobind-scorecard.html">Check your readiness</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <div class="eyebrow reveal">Cyber insurance readiness · for 5–50-person businesses</div>
+        <h1 class="reveal">Know where you stand — <em>before the carrier asks</em>.</h1>
+        <p class="sub reveal">Carriers underwrite like auditors now. We show you where you stand — and help
+          you get insurable, usually in about two weeks.</p>
+        <div class="cta-row reveal">
+          <a class="btn bind" href="cleartobind-scorecard.html">Check your readiness — free →</a>
+          <a class="btn ghost" href="https://cleartobind.com">Book a 30-min consult</a>
+        </div>
+        <div class="microproof reveal">No email required · maps to the real carrier questionnaire · built by a security practitioner</div>
+        <div class="trust reveal">
+          <span class="t">10+ yrs in network security</span>
+          <span class="t">Palo Alto · Fortinet · Microsoft · AWS</span>
+          <span class="t">English / Español</span>
+        </div>
+      </div>
+
+      <div class="hero-col reveal">
+        <div class="hero-card" aria-hidden="true">
+        <div class="hc-top">
+          <span class="lbl">Readiness Assessment</span>
+          <span class="hc-stamp">Insurable</span>
+        </div>
+        <div class="hc-row"><span class="nm">🔐 MFA enforced + provable</span><span class="bar"><i style="width:95%;background:var(--bind)"></i></span><span class="pf p">Pass</span></div>
+        <div class="hc-row"><span class="nm">🛡️ EDR on all endpoints</span><span class="bar"><i style="width:90%;background:var(--bind)"></i></span><span class="pf p">Pass</span></div>
+        <div class="hc-row"><span class="nm">💾 Immutable backups + test restore</span><span class="bar"><i style="width:52%;background:var(--warn)"></i></span><span class="pf w">Partial</span></div>
+        <div class="hc-row"><span class="nm">📋 Incident response plan</span><span class="bar"><i style="width:22%;background:var(--risk)"></i></span><span class="pf g">Gap</span></div>
+        <div class="hc-row"><span class="nm">🎓 Awareness training records</span><span class="bar"><i style="width:88%;background:var(--bind)"></i></span><span class="pf p">Pass</span></div>
+        </div>
+        <div class="hc-caption">What you get: a 0–100 readiness score, a verdict, and your top fixes — in 3 minutes.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section class="band alt" id="problem">
+  <div class="container">
+    <div class="sechead reveal"><span class="secnum">01</span><h2>It usually starts in your inbox.</h2></div>
+    <p class="lead reveal" style="margin-bottom:34px">You don't have a security team. "IT" is one contractor.
+      And then one of these lands — with a deadline.</p>
+    <div class="prob-grid">
+      <div class="prob reveal"><div class="ic">📄</div><h3>A 100-question application</h3>
+        <p>A renewal or new-policy questionnaire asking about MFA, EDR, immutable backups, incident response —
+          terms nobody on staff can confidently answer.</p></div>
+      <div class="prob reveal"><div class="ic">📈</div><h3>A premium that jumped</h3>
+        <p>Your broker says the rate climbed sharply, or coverage was declined outright — and can't tell you
+          exactly how to fix it.</p></div>
+      <div class="prob reveal"><div class="ic">✍️</div><h3>A client demanding attestation</h3>
+        <p>A customer or prime contractor won't sign until you attest to security controls you've never had to
+          document before.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF MOMENT -->
+<section class="band ink">
+  <div class="container">
+    <div class="proof-wrap reveal">
+      <div class="eyebrow" style="color:#8fd3bb">The thing nobody tells you</div>
+      <div class="big">Policies rarely get declined over a missing tool.<br>They get declined over <em>missing proof</em>.</div>
+      <p>Most businesses already have decent security. What they can't do is produce the screenshots, the
+        tested-restore log, the training records, the written plan. We don't sell you software — we make your
+        controls <em>provable</em>, which is what underwriting actually grades.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<section class="band" id="controls">
+  <div class="container">
+    <div class="sechead reveal"><span class="secnum">02</span><h2>What carriers actually check.</h2></div>
+    <p class="lead reveal" style="margin-bottom:30px">Across carriers the requirements have converged on eight
+      controls. We map your business to every one — against the real questionnaire.</p>
+    <div class="ctrl-grid">
+      <div class="ctrl-card reveal"><div class="ic">🔐</div><h4>Multi-Factor Auth</h4><p>Enforced on email, remote access, and admin accounts — with proof.</p></div>
+      <div class="ctrl-card reveal"><div class="ic">🛡️</div><h4>EDR / MDR</h4><p>Modern detection on every endpoint. Traditional antivirus is rejected.</p></div>
+      <div class="ctrl-card reveal"><div class="ic">💾</div><h4>Backups</h4><p>Offsite, immutable, with a documented test restore in the last year.</p></div>
+      <div class="ctrl-card reveal"><div class="ic">📋</div><h4>Incident Response</h4><p>A written plan, tested with a tabletop exercise, kept current.</p></div>
+      <div class="ctrl-card reveal"><div class="ic">🩹</div><h4>Patch Management</h4><p>A written policy with SLAs and evidence of consistent application.</p></div>
+      <div class="ctrl-card reveal"><div class="ic">🎓</div><h4>Awareness Training</h4><p>Annual, all-staff, with completion certificates on file.</p></div>
+      <div class="ctrl-card reveal"><div class="ic">🗝️</div><h4>Privileged Access</h4><p>A documented least-privilege model, admin accounts separated.</p></div>
+      <div class="ctrl-card reveal"><div class="ic">🔗</div><h4>Vendor Risk</h4><p>Review of key SaaS vendors' SOC 2 and a current data-access inventory.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="band alt" id="offer">
+  <div class="container">
+    <div class="sechead reveal"><span class="secnum">03</span><h2>How we get you there.</h2></div>
+    <p class="lead reveal" style="margin-bottom:36px">Productized and flat-fee. You know the price, the timeline,
+      and the deliverables up front — no surprises, no upsells, no long-term contract.</p>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tname">Tier 0 · Triage</div>
+        <h3>Readiness Triage</h3>
+        <div class="price">from <b>$1,000</b></div>
+        <div class="when">3–5 days</div>
+        <ul>
+          <li>For a renewal inside ~3 weeks</li>
+          <li>What's salvageable now</li>
+          <li>What to disclose accurately</li>
+          <li>A 10-day fix list</li>
+        </ul>
+      </div>
+      <div class="tier feature reveal">
+        <div class="flag">Most popular</div>
+        <div class="tname">Tier 1 · The wedge</div>
+        <h3>Readiness Audit</h3>
+        <div class="price">from <b>$3,500</b></div>
+        <div class="when">2 weeks · flat</div>
+        <ul>
+          <li>The carrier's questionnaire prepared with you</li>
+          <li>Gap report vs. the carrier's requirements</li>
+          <li>Evidence pack: screenshots + attestation language</li>
+          <li>Prioritized remediation roadmap</li>
+          <li>60-minute review call</li>
+        </ul>
+      </div>
+      <div class="tier reveal">
+        <div class="tname">Tier 2 · Hands-on</div>
+        <h3>Readiness + Remediation</h3>
+        <div class="price">from <b>$5,000</b></div>
+        <div class="when">4–6 weeks · flat</div>
+        <ul>
+          <li>Everything in the Audit</li>
+          <li>MFA hardening + EDR rollout help</li>
+          <li>Backup architecture + immutable storage</li>
+          <li>Written IR plan + tabletop</li>
+          <li>Documented security policies</li>
+        </ul>
+      </div>
+      <div class="tier reveal">
+        <div class="tname">Tier 3 · Ongoing</div>
+        <h3>Annual Retainer</h3>
+        <div class="price">from <b>$1,500</b><span style="font-size:14px;font-weight:600">/mo</span></div>
+        <div class="when">renewal-ready, year-round</div>
+        <ul>
+          <li>Quarterly control review</li>
+          <li>Renewal-cycle questionnaire support</li>
+          <li>Annual tabletop exercise</li>
+          <li>Vendor SOC 2 reviews</li>
+          <li>Priority response on insurance questions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="band">
+  <div class="container">
+    <div class="sechead reveal"><span class="secnum">04</span><h2>Why us.</h2></div>
+    <div class="why-grid">
+      <div class="reveal">
+        <p class="lead">This is a business-risk conversation, not an IT sales pitch. It's run by a network-security
+          practitioner who has spent a decade inside exactly the systems insurers ask about — and who has nothing
+          to sell you but the readiness itself.</p>
+        <div class="logos">
+          Delivery history across<br>
+          <span>TD Bank · Scotiabank · Government of Canada · TELUS · Rogers</span>
+        </div>
+      </div>
+      <div class="cred reveal">
+        <div class="item"><span class="k">🎖️</span><div class="t"><b>10+ years</b> in network and infrastructure security.</div></div>
+        <div class="item"><span class="k">📜</span><div class="t">Certified across the four vendor stacks insurers weigh: <b>Palo Alto, Fortinet, Microsoft, AWS.</b></div></div>
+        <div class="item"><span class="k">🔒</span><div class="t">Active <b>Secret security clearance</b> — relevant for government and defense-supply-chain clients.</div></div>
+        <div class="item"><span class="k">🌎</span><div class="t">Bilingual delivery in <b>English and Spanish.</b></div></div>
+        <div class="item"><span class="k">🇨🇦🇺🇸</span><div class="t">Serving Canadian clients now, US market via <b>TN visa.</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONT DO -->
+<section class="band alt">
+  <div class="container">
+    <div class="sechead reveal"><span class="secnum">05</span><h2>What we deliberately don't do.</h2></div>
+    <p class="lead reveal" style="margin-bottom:30px">Our independence is the product. We're the assessor, never
+      the operator — the Switzerland in the room.</p>
+    <div class="dont">
+      <div class="d reveal"><span class="x">⊘</span><div class="t"><b>We don't resell software</b><span>No EDR, backup, or MFA products to push. Vendor-neutral, always.</span></div></div>
+      <div class="d reveal"><span class="x">⊘</span><div class="t"><b>We don't sell managed services</b><span>No 36-month contract. We assess and hand you the roadmap.</span></div></div>
+      <div class="d reveal"><span class="x">⊘</span><div class="t"><b>We never sign your attestation</b><span>You're always the attesting party. We prepare the evidence; you adopt and sign.</span></div></div>
+      <div class="d reveal"><span class="x">⊘</span><div class="t"><b>We don't sell you compliance you don't need</b><span>No SOC 2 / ISO theater. Just what gets you insurable.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORECARD CTA -->
+<section class="band">
+  <div class="container reveal">
+    <div class="sc-cta">
+      <div style="position:relative">
+        <div class="eyebrow">Free · 3 minutes · no email required</div>
+        <h2>See where you stand before the carrier does.</h2>
+        <p>Answer 15 questions. The moment you finish, you get:</p>
+        <ul class="get-list">
+          <li><b>A 0–100 readiness score</b> and a plain-English insurability verdict</li>
+          <li><b>Pass / partial / gap</b> across all 8 controls carriers check</li>
+          <li><b>Your top 3 fixes</b> and the right next step for your timeline</li>
+        </ul>
+      </div>
+      <a class="btn bind" style="position:relative;font-size:16px;padding:16px 30px" href="cleartobind-scorecard.html">Take the Readiness Scorecard →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="band alt" id="faq">
+  <div class="container">
+    <div class="sechead reveal"><span class="secnum">06</span><h2>Straight answers.</h2></div>
+    <div class="reveal">
+      <div class="faq-item">
+        <div class="faq-q"><h4>Do you fill out and sign the application for us?</h4><span class="pl">+</span></div>
+        <div class="faq-a"><p>No — and that's deliberate. You're always the attesting party. We prepare every
+          answer with you and assemble the evidence behind it, then you review, adopt, and sign. It protects you,
+          and it protects the integrity of your policy at claim time.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><h4>How fast is this, really?</h4><span class="pl">+</span></div>
+        <div class="faq-a"><p>The Readiness Audit runs on a two-week clock. If your renewal is sooner than that,
+          the Triage gets you a defensible position and a fix list in a few days.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><h4>Will you try to sell us software or a managed contract?</h4><span class="pl">+</span></div>
+        <div class="faq-a"><p>Never. We don't resell tools and we don't run your IT. When you need to buy something,
+          we tell you what fits and step back — our recommendation isn't tied to a commission.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><h4>We already have an IT provider. Why you?</h4><span class="pl">+</span></div>
+        <div class="faq-a"><p>Your IT provider keeps the lights on; they're rarely set up to translate your
+          environment into an underwriter's language and evidence pack. We do that one job, fast, and hand the
+          documentation to you and your broker.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><h4>What does it cost?</h4><span class="pl">+</span></div>
+        <div class="faq-a"><p>Flat fees, published up front: Triage from $1,000, the two-week Readiness Audit
+          from $3,500, hands-on Remediation from $5,000, and an annual retainer from $1,500/month. No hourly
+          surprises.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div>
+      <div class="brand"><span class="seal" style="border-color:#8fd3bb;color:#8fd3bb">✓</span><span class="mark">Clear<b style="color:#8fd3bb">To</b>Bind</span></div>
+      <div class="tagline">Get insurable in two weeks · Flat fee, no lock-in</div>
+      <div class="legal">ClearToBind provides cyber insurance readiness assessment and advisory services.
+        It is not an insurance broker, does not place coverage, and does not make underwriting decisions.
+        Indicative guidance only; clients remain the attesting party on any application.</div>
+    </div>
+    <div class="fnav">
+      <a href="#problem">The problem</a>
+      <a href="#controls">What carriers check</a>
+      <a href="#offer">How it works</a>
+      <a href="cleartobind-scorecard.html">Readiness Scorecard</a>
+      <a href="https://cleartobind.com">Book a consult</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.12, rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach((el,i)=>{
+    el.style.transitionDelay = (Math.min(i%4,3)*60)+"ms";
+    io.observe(el);
+  });
+  // faq
+  document.querySelectorAll(".faq-q").forEach(q=>{
+    q.addEventListener("click",()=>q.parentElement.classList.toggle("open"));
+  });
+</script>
+</body>
+</html>

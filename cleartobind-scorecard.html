@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ClearToBind — Cyber Insurance Readiness Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F0E7;
+    --paper-2:#EFEAE0;
+    --card:#FFFDF8;
+    --ink:#181C22;
+    --ink-soft:#3C434C;
+    --muted:#6B7480;
+    --hair:#E2DBCC;
+    --hair-2:#D6CDBA;
+    --navy:#15233B;
+    --navy-2:#22344f;
+    --bind:#1C6E54;      /* approval green */
+    --bind-soft:#E4EFE9;
+    --warn:#B97520;      /* amber */
+    --warn-soft:#F4E9D8;
+    --risk:#A2433A;      /* brick */
+    --risk-soft:#F1E0DC;
+    --gold:#9C7B3A;
+    --shadow:0 1px 2px rgba(20,20,20,.04), 0 18px 50px -28px rgba(21,35,59,.28);
+    --shadow-lg:0 2px 6px rgba(20,20,20,.05), 0 40px 80px -40px rgba(21,35,59,.40);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    font-family:'Hanken Grotesk',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.5;
+    min-height:100vh;
+    position:relative;
+  }
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% -10%, rgba(34,52,79,.06), transparent 60%);
+  }
+
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:34px 24px 90px}
+
+  /* ---------- masthead ---------- */
+  header.mast{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-bottom:18px;margin-bottom:34px;border-bottom:1px solid var(--hair-2);
+  }
+  .brand{display:flex;align-items:baseline;gap:10px;letter-spacing:-.01em}
+  .brand .mark{
+    font-family:'Spectral',serif;font-weight:700;font-size:23px;color:var(--navy);
+    letter-spacing:-.02em;
+  }
+  .brand .mark b{color:var(--bind);font-weight:700}
+  .brand .seal{
+    width:26px;height:26px;border-radius:50%;border:1.5px solid var(--bind);
+    display:grid;place-items:center;color:var(--bind);font-size:13px;flex:0 0 auto;
+  }
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);
+    letter-spacing:.04em;text-transform:uppercase}
+  @media(max-width:600px){.tag{display:none}}
+
+  /* ---------- shared ---------- */
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--gold);font-weight:500}
+  h1{font-family:'Spectral',serif;font-weight:600;font-size:clamp(34px,6vw,52px);
+    line-height:1.02;letter-spacing:-.025em;color:var(--navy)}
+  .lede{font-size:18px;color:var(--ink-soft);max-width:54ch;margin-top:18px}
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:16px;
+    box-shadow:var(--shadow)}
+
+  .fade{opacity:0;transform:translateY(14px);animation:fade .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}
+  .d4{animation-delay:.32s}.d5{animation-delay:.41s}
+  @keyframes fade{to{opacity:1;transform:none}}
+
+  /* ---------- intro ---------- */
+  .intro{padding:6px 2px}
+  .meta-row{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+  .meta-row b{color:var(--ink);font-weight:500}
+  .meta-row span{display:flex;align-items:center;gap:8px}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--bind)}
+
+  .controls-strip{margin-top:30px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.02em;
+    color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--hair);
+    padding:6px 11px;border-radius:999px}
+
+  .btn{
+    font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;
+    border:none;cursor:pointer;border-radius:11px;padding:15px 28px;
+    background:var(--navy);color:#fff;letter-spacing:.01em;
+    transition:transform .15s ease, box-shadow .2s ease, background .2s ease;
+    box-shadow:0 12px 26px -14px rgba(21,35,59,.7);
+  }
+  .btn:hover{transform:translateY(-2px);background:var(--navy-2);
+    box-shadow:0 18px 34px -16px rgba(21,35,59,.75)}
+  .btn:active{transform:translateY(0)}
+  .btn.bind{background:var(--bind);box-shadow:0 12px 26px -14px rgba(28,110,84,.75)}
+  .btn.bind:hover{background:#1f7d60}
+  .btn.ghost{background:transparent;color:var(--ink-soft);box-shadow:none;
+    border:1px solid var(--hair-2);font-weight:600}
+  .btn.ghost:hover{background:var(--paper-2);transform:none}
+  .btn-row{display:flex;gap:12px;align-items:center;margin-top:34px;flex-wrap:wrap}
+  .fineprint{font-size:13px;color:var(--muted);margin-top:14px;max-width:46ch}
+
+  /* ---------- profile ---------- */
+  .field{margin-bottom:26px}
+  .field label{display:block;font-weight:700;font-size:15px;margin-bottom:11px;color:var(--ink)}
+  .opt-grid{display:grid;gap:9px}
+  .opt-grid.cols{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .opt{
+    text-align:left;font-family:inherit;font-size:14.5px;color:var(--ink-soft);
+    background:var(--card);border:1.5px solid var(--hair-2);border-radius:11px;
+    padding:13px 15px;cursor:pointer;transition:all .14s ease;font-weight:500;
+    display:flex;align-items:center;gap:11px;line-height:1.35;
+  }
+  .opt .tick{width:17px;height:17px;border-radius:50%;border:1.5px solid var(--hair-2);
+    flex:0 0 auto;transition:all .14s ease}
+  .opt:hover{border-color:var(--navy);background:#fff;transform:translateX(2px)}
+  .opt.sel{border-color:var(--bind);background:var(--bind-soft);color:var(--ink)}
+  .opt.sel .tick{border-color:var(--bind);background:var(--bind);
+    box-shadow:inset 0 0 0 3px var(--bind-soft)}
+
+  /* ---------- question flow ---------- */
+  .qmeter{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+  .qmeter .track{flex:1;height:7px;background:var(--paper-2);border:1px solid var(--hair);
+    border-radius:999px;overflow:hidden}
+  .qmeter .fill{height:100%;width:0;background:linear-gradient(90deg,var(--navy),var(--bind));
+    border-radius:999px;transition:width .45s cubic-bezier(.3,.8,.3,1)}
+  .qmeter .count{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted);
+    white-space:nowrap;letter-spacing:.02em}
+
+  .qcard{padding:38px 38px 32px}
+  @media(max-width:600px){.qcard{padding:26px 20px}}
+  .qdomain{display:flex;align-items:center;gap:9px;margin-bottom:14px}
+  .qdomain .ic{font-size:15px}
+  .qdomain .name{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);font-weight:500}
+  .qdomain .crit{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+    color:var(--risk);border:1px solid var(--risk);border-radius:999px;padding:2px 7px;
+    text-transform:uppercase}
+  .qtext{font-family:'Spectral',serif;font-weight:500;font-size:clamp(21px,3.4vw,27px);
+    line-height:1.22;letter-spacing:-.012em;color:var(--navy);margin-bottom:24px}
+  .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:26px}
+  .back{background:none;border:none;font-family:inherit;font-size:14px;color:var(--muted);
+    cursor:pointer;font-weight:600;padding:6px 0;transition:color .15s}
+  .back:hover{color:var(--ink)}
+  .back[disabled]{opacity:.3;cursor:default}
+  .hint{font-size:12.5px;color:var(--muted);font-family:'IBM Plex Mono',monospace}
+
+  /* ---------- results ---------- */
+  .verdict-head{text-align:center;padding:46px 30px 36px;position:relative;overflow:hidden}
+  .stamp{
+    display:inline-grid;place-items:center;gap:2px;
+    border:3px double currentColor;border-radius:14px;padding:16px 26px;
+    transform:rotate(-6deg);position:relative;margin-bottom:10px;
+    animation:stampin .5s cubic-bezier(.2,1.4,.4,1) .25s both;
+  }
+  @keyframes stampin{from{opacity:0;transform:rotate(-6deg) scale(1.6)}to{opacity:1}}
+  .stamp .verb{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;opacity:.8}
+  .stamp .word{font-family:'Spectral',serif;font-weight:700;font-size:clamp(26px,5vw,38px);
+    letter-spacing:.01em;line-height:1}
+  .v-bind{color:var(--bind)}.v-warn{color:var(--warn)}.v-risk{color:var(--risk)}
+  .scoreline{margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);
+    letter-spacing:.04em}
+  .scoreline b{font-size:30px;color:var(--ink);font-weight:600;font-family:'Spectral',serif}
+  .vsummary{max-width:52ch;margin:16px auto 0;color:var(--ink-soft);font-size:16px}
+
+  .impact{margin:0 30px 30px;border:1px solid var(--hair);border-radius:13px;
+    background:var(--paper-2);padding:18px 22px;display:flex;gap:18px;align-items:flex-start}
+  .impact .ic{font-size:20px;flex:0 0 auto;margin-top:1px}
+  .impact .t{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+  .impact .b{font-size:15px;color:var(--ink);font-weight:500}
+  .impact small{display:block;color:var(--muted);font-size:12px;margin-top:6px;font-weight:400}
+
+  .sec-title{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin:34px 30px 14px;
+    display:flex;align-items:center;gap:12px}
+  .sec-title::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  .ctrl-list{margin:0 30px}
+  .ctrl{display:flex;align-items:flex-start;gap:14px;padding:15px 0;
+    border-bottom:1px solid var(--hair)}
+  .ctrl:last-child{border-bottom:none}
+  .ctrl .badge{flex:0 0 auto;width:62px;text-align:center;font-family:'IBM Plex Mono',monospace;
+    font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 0;border-radius:7px}
+  .b-pass{background:var(--bind-soft);color:var(--bind)}
+  .b-part{background:var(--warn-soft);color:var(--warn)}
+  .b-fail{background:var(--risk-soft);color:var(--risk)}
+  .ctrl .body h4{font-size:15px;font-weight:700;color:var(--ink);display:flex;gap:8px;align-items:center}
+  .ctrl .body .note{font-size:13.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+  .ctrl .bar{margin-left:auto;align-self:center;flex:0 0 auto;width:54px;height:5px;
+    background:var(--paper-2);border-radius:999px;overflow:hidden;border:1px solid var(--hair)}
+  .ctrl .bar i{display:block;height:100%;border-radius:999px}
+
+  .fixes{margin:6px 30px 0;counter-reset:fx}
+  .fix{display:flex;gap:14px;padding:14px 0;border-bottom:1px dashed var(--hair-2)}
+  .fix:last-child{border-bottom:none}
+  .fix .n{counter-increment:fx;flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+    background:var(--navy);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;
+    display:grid;place-items:center;font-weight:600}
+  .fix .n::before{content:counter(fx)}
+  .fix h4{font-size:15px;font-weight:700;color:var(--ink)}
+  .fix p{font-size:13.5px;color:var(--ink-soft);margin-top:2px;line-height:1.45}
+
+  .cta-block{margin:36px 30px 8px;border-radius:15px;background:var(--navy);color:#fff;
+    padding:30px 32px;position:relative;overflow:hidden}
+  .cta-block::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
+    border-radius:50%;background:radial-gradient(circle,rgba(28,110,84,.55),transparent 70%)}
+  .cta-block .eyebrow{color:#8fd3bb}
+  .cta-block h3{font-family:'Spectral',serif;font-weight:600;font-size:25px;margin-top:8px;
+    letter-spacing:-.01em;position:relative;line-height:1.15}
+  .cta-block p{color:#c7d0db;font-size:14.5px;margin-top:10px;max-width:48ch;position:relative}
+  .cta-block .btn-row{margin-top:22px;position:relative}
+
+  .disclaimer{margin:28px 30px 0;font-size:11.5px;color:var(--muted);line-height:1.55;
+    border-top:1px solid var(--hair);padding-top:16px}
+
+  .footer{text-align:center;margin-top:40px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--muted);letter-spacing:.04em}
+
+  /* print → the "one-page PDF" deliverable */
+  @media print{
+    body{background:#fff}
+    body::before,body::after,.cta-block .btn-row,.no-print{display:none!important}
+    .wrap{max-width:100%;padding:0}
+    .panel{box-shadow:none;border:1px solid #ccc}
+    .stamp{animation:none}
+    *{animation:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="brand">
+      <span class="seal">✓</span>
+      <span class="mark">Clear<b>To</b>Bind</span>
+    </div>
+    <span class="tag">Insurance Readiness Scorecard</span>
+  </header>
+
+  <main id="app"></main>
+
+  <div class="footer">cleartobind.com · Get insurable in two weeks · Flat fee, no lock-in</div>
+</div>
+
+<script>
+/* ============================================================
+   ClearToBind — Readiness Scorecard
+   Single-file, no dependencies, no storage.
+   ============================================================ */
+
+const DOMAINS = {
+  mfa:      {name:"Multi-Factor Authentication", ic:"🔐", critical:true},
+  edr:      {name:"Endpoint Detection (EDR/MDR)", ic:"🛡️", critical:true},
+  backup:   {name:"Backups & Recovery",          ic:"💾", critical:true},
+  ir:       {name:"Incident Response Plan",       ic:"📋", critical:true},
+  patch:    {name:"Patch Management",             ic:"🩹", critical:false},
+  train:    {name:"Security Awareness Training",  ic:"🎓", critical:false},
+  pam:      {name:"Privileged Access",            ic:"🗝️", critical:false},
+  vendor:   {name:"Vendor / Third-Party Risk",    ic:"🔗", critical:false},
+};
+
+// 15 scored questions. score = fraction (0..1) of the weight.
+const QUESTIONS = [
+  {d:"mfa", w:10, q:"Is multi-factor authentication enforced — required, not optional — on email, remote access (VPN/RDP), and all admin accounts?",
+   o:[["Yes, enforced everywhere",1],["Enforced on email only",.5],["Optional or partial",.25],["No, or not sure",0]]},
+  {d:"mfa", w:8, q:"Could you produce screenshots today proving MFA is actually enforced?",
+   o:[["Yes, readily",1],["Probably, with some effort",.5],["No — it'd be a scramble",0]], proof:true},
+
+  {d:"edr", w:10, q:"Do all endpoints — laptops, desktops, servers, and Macs — run modern EDR/MDR, not just traditional antivirus?",
+   o:[["Yes, every device",1],["Most devices covered",.5],["Some — or AV only",.2],["No, or not sure",0]]},
+  {d:"edr", w:6, q:"Is someone actively monitoring and responding to security alerts?",
+   o:[["Yes — 24/7 managed (MDR)",1],["Business-hours monitoring",.6],["Alerts go to an inbox, no process",.25],["No one is watching",0]]},
+
+  {d:"backup", w:8, q:"Are your backups both offsite AND immutable (ransomware-resistant — can't be altered or deleted)?",
+   o:[["Yes — offsite and immutable",1],["Offsite, but not immutable",.4],["Local backups only",.15],["No, or not sure",0]]},
+  {d:"backup", w:8, q:"Have you completed and documented a test restore in the last 12 months?",
+   o:[["Yes — documented",1],["Restored, but not documented",.5],["No test restore done",0]], proof:true},
+
+  {d:"ir", w:7, q:"Do you have a written incident response plan that's current?",
+   o:[["Yes — written and current",1],["An outdated or partial draft",.4],["No written plan",0]]},
+  {d:"ir", w:5, q:"Has that plan been tested with a tabletop exercise in the last 12 months?",
+   o:[["Yes, within 12 months",1],["More than a year ago",.4],["Never tested",0]]},
+
+  {d:"patch", w:5, q:"Is there a written patch-management policy with defined timelines/SLAs?",
+   o:[["Yes — documented with SLAs",1],["Informal, no written policy",.4],["No policy",0]]},
+  {d:"patch", w:5, q:"Can you show evidence that patches are applied consistently?",
+   o:[["Yes — reports available",1],["Somewhat — partial records",.5],["No evidence on hand",0]], proof:true},
+
+  {d:"train", w:8, q:"Does all staff complete security-awareness training annually, with completion records kept?",
+   o:[["Yes — with completion records",1],["Training happens, no records",.5],["Ad hoc / occasional",.25],["No training",0]]},
+
+  {d:"pam", w:5, q:"Is privileged/admin access limited to a documented least-privilege model?",
+   o:[["Yes — documented",1],["Limited, but not documented",.5],["Most users are local admins",.1],["Not sure",0]]},
+  {d:"pam", w:5, q:"Are admin accounts kept separate from everyday user accounts?",
+   o:[["Yes — fully separated",1],["For some accounts",.5],["No separation",0]]},
+
+  {d:"vendor", w:5, q:"Do you review the security posture (e.g. SOC 2 reports) of key SaaS vendors?",
+   o:[["Yes — tracked and reviewed",1],["Informally, sometimes",.4],["No",0]]},
+  {d:"vendor", w:5, q:"Do you keep a current inventory of vendors that can access your data?",
+   o:[["Yes — kept current",1],["Partial list",.5],["No inventory",0]]},
+];
+
+const PROFILE = [
+  {k:"industry", label:"What kind of business is this?", multi:false,
+   o:["Professional services (law, accounting, advisory)","Healthcare-adjacent (dental, clinic, billing)","Construction / contracting","Real estate","Manufacturing","Government / defense supplier","Other"]},
+  {k:"size", label:"How many employees?", multi:false,
+   o:["Under 10","10–25","26–50","51–100","100+"]},
+  {k:"renewal", label:"When is your cyber policy decision due?", multi:false,
+   o:["Inside 3 weeks","30–60 days","60–90 days","No active deadline — just checking"]},
+];
+
+// per-domain remediation guidance keyed by status
+const FIXES = {
+  mfa:    "Enforce MFA on email, VPN/RDP, and every admin account — then capture the proof screenshots underwriters demand.",
+  edr:    "Replace legacy antivirus with EDR/MDR on every endpoint, including servers and Macs, with alerts going to a real response process.",
+  backup: "Move to offsite, immutable backups and run a documented test restore — the restore evidence is what closes the gap.",
+  ir:     "Adopt a written incident-response plan and run one tabletop exercise so you can attest it's been tested.",
+  patch:  "Put a written patch policy with SLAs in place and turn on reporting so application is evidenced.",
+  train:  "Roll out annual all-staff awareness training and retain the completion certificates.",
+  pam:    "Document a least-privilege model and separate admin accounts from daily-use logins.",
+  vendor: "Build a living vendor inventory and review SOC 2 / security posture for the vendors touching your data.",
+};
+
+/* ---------- state ---------- */
+const state = {step:"intro", qi:0, answers:{}, profile:{}};
+const app = document.getElementById("app");
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+/* ---------- render router ---------- */
+function render(){
+  if(state.step==="intro")   return renderIntro();
+  if(state.step==="profile") return renderProfile();
+  if(state.step==="quiz")    return renderQuestion();
+  if(state.step==="result")  return renderResult();
+}
+
+/* ---------- intro ---------- */
+function renderIntro(){
+  app.innerHTML = `
+  <section class="intro">
+    <div class="eyebrow fade d1">Free · 3 minutes · No email required to see your result</div>
+    <h1 class="fade d2">Will you pass cyber<br>insurance underwriting?</h1>
+    <p class="lede fade d3">Carriers now act like auditors. Most small businesses have the right tools but
+      can't <em>prove</em> it — and that's what gets a policy declined or repriced. Answer 15 questions and
+      get a clear, carrier-aligned verdict in minutes.</p>
+
+    <div class="controls-strip fade d3">
+      ${Object.values(DOMAINS).map(d=>`<span class="pill">${d.ic} ${d.name}</span>`).join("")}
+    </div>
+
+    <div class="btn-row fade d4">
+      <button class="btn" onclick="go('profile')">Start the assessment &nbsp;→</button>
+    </div>
+    <p class="fineprint fade d4">Built by a network-security practitioner with 10+ years across the four
+      vendor stacks insurers care about. This is an indicative readiness assessment, not a coverage decision.</p>
+
+    <div class="meta-row fade d5">
+      <span><span class="dot"></span><b>15</b>&nbsp;questions</span>
+      <span><span class="dot"></span><b>8</b>&nbsp;control areas</span>
+      <span><span class="dot"></span>maps to the&nbsp;<b>actual</b>&nbsp;questionnaire</span>
+    </div>
+  </section>`;
+}
+
+/* ---------- profile ---------- */
+function renderProfile(){
+  app.innerHTML = `
+  <section class="fade d1">
+    <div class="eyebrow">Step 1 of 2 · A little context</div>
+    <h1 style="font-size:clamp(28px,4.5vw,38px);margin-top:10px">First, who are we sizing this up for?</h1>
+    <div class="panel" style="padding:30px 30px 26px;margin-top:26px">
+      ${PROFILE.map((f,fi)=>`
+        <div class="field">
+          <label>${f.label}</label>
+          <div class="opt-grid ${f.o.length>4?'cols':''}">
+            ${f.o.map((opt,oi)=>`
+              <button class="opt ${state.profile[f.k]===opt?'sel':''}"
+                onclick="setProfile('${f.k}', this.dataset.v, ${fi})" data-v="${esc(opt)}">
+                <span class="tick"></span>${esc(opt)}
+              </button>`).join("")}
+          </div>
+        </div>`).join("")}
+    </div>
+    <div class="btn-row">
+      <button class="btn ${profileComplete()?'':''}" ${profileComplete()?'':'disabled style="opacity:.4;cursor:default"'}
+        onclick="${profileComplete()?"go('quiz')":""}">Begin the 15 questions &nbsp;→</button>
+      <button class="btn ghost" onclick="go('intro')">Back</button>
+    </div>
+  </section>`;
+}
+function setProfile(k,v,fi){ state.profile[k]=v; renderProfile(); }
+function profileComplete(){ return PROFILE.every(f=>state.profile[f.k]); }
+
+/* ---------- question ---------- */
+function renderQuestion(){
+  const i = state.qi, Q = QUESTIONS[i], dom = DOMAINS[Q.d];
+  const pct = Math.round((i/QUESTIONS.length)*100);
+  app.innerHTML = `
+  <div class="qmeter fade">
+    <div class="track"><div class="fill" style="width:${pct}%"></div></div>
+    <div class="count">${String(i+1).padStart(2,"0")} / ${QUESTIONS.length}</div>
+  </div>
+  <section class="panel qcard fade d1">
+    <div class="qdomain">
+      <span class="ic">${dom.ic}</span>
+      <span class="name">${dom.name}</span>
+      ${dom.critical?'<span class="crit">Critical control</span>':''}
+    </div>
+    <div class="qtext">${esc(Q.q)}</div>
+    <div class="opt-grid">
+      ${Q.o.map((opt,oi)=>`
+        <button class="opt ${state.answers[i]===oi?'sel':''}" onclick="answer(${i},${oi})">
+          <span class="tick"></span>${esc(opt[0])}
+        </button>`).join("")}
+    </div>
+    <div class="qnav">
+      <button class="back" ${i===0?'disabled':''} onclick="prevQ()">← Back</button>
+      <span class="hint">${Q.proof?'⚑ Proof question — provability is what carriers check':'Pick the closest match'}</span>
+    </div>
+  </section>`;
+}
+function answer(i,oi){
+  state.answers[i]=oi;
+  // brief highlight, then advance
+  setTimeout(()=>{
+    if(i < QUESTIONS.length-1){ state.qi=i+1; renderQuestion(); }
+    else { computeAndGo(); }
+  },180);
+  renderQuestion();
+}
+function prevQ(){ if(state.qi>0){ state.qi--; renderQuestion(); } else go('profile'); }
+
+/* ---------- scoring ---------- */
+function compute(){
+  const domScore={}, domMax={};
+  for(const k in DOMAINS){ domScore[k]=0; domMax[k]=0; }
+  QUESTIONS.forEach((Q,i)=>{
+    const oi = state.answers[i];
+    const frac = (oi!=null) ? Q.o[oi][1] : 0;
+    domScore[Q.d]+= frac*Q.w;
+    domMax[Q.d]  += Q.w;
+  });
+  let total=0, max=0;
+  const domPct={};
+  for(const k in DOMAINS){ total+=domScore[k]; max+=domMax[k];
+    domPct[k]= domMax[k] ? domScore[k]/domMax[k] : 0; }
+  const overall = Math.round((total/max)*100);
+
+  const failingCrit = Object.keys(DOMAINS).filter(k=>DOMAINS[k].critical && domPct[k]<0.35).length;
+  const weakCrit    = Object.keys(DOMAINS).filter(k=>DOMAINS[k].critical && domPct[k]<0.55).length;
+
+  let verdict;
+  if(failingCrit>=2 || overall<35)            verdict="declined";
+  else if(failingCrit>=1 || overall<55)       verdict="risk";
+  else if(overall<79 || weakCrit>=1)          verdict="conditions";
+  else                                        verdict="insurable";
+
+  return {overall, domPct, domScore, domMax, verdict, failingCrit};
+}
+
+const VERDICT = {
+  insurable:  {cls:"v-bind", verb:"Assessment", word:"Likely Insurable", stamp:"v-bind",
+    sum:"Strong across the controls carriers weigh most. With your evidence organized, you're in shape to bind at competitive terms.",
+    impact:"Best-available terms likely. A clean, well-evidenced submission can even earn a credit.",
+    icon:"✅"},
+  conditions: {cls:"v-warn", verb:"Assessment", word:"Insurable — With Conditions", stamp:"v-warn",
+    sum:"The foundation is there, but a few gaps will surface as subjectivities. Close them before submission and you avoid surprises at bind.",
+    impact:"Expect modest loading or specific subjectivities to satisfy before coverage incepts.",
+    icon:"⚠️"},
+  risk:       {cls:"v-warn", verb:"Assessment", word:"At Risk", stamp:"v-warn",
+    sum:"Several controls underwriters treat as non-negotiable are incomplete or unprovable. Submitting as-is risks heavy loading or a hold.",
+    impact:"If offered at all, expect significant repricing — or the quote held pending remediation.",
+    icon:"⚠️"},
+  declined:   {cls:"v-risk", verb:"Assessment", word:"Likely Declined", stamp:"v-risk",
+    sum:"Multiple critical controls are missing. Most carriers decline at this profile — but every one of these is fixable, usually inside a few weeks.",
+    impact:"Likely declined or non-renewed until critical gaps are closed and evidenced.",
+    icon:"⛔"},
+};
+
+function computeAndGo(){ state.result = compute(); go('result'); }
+
+/* ---------- result ---------- */
+function statusOf(p){ return p>=0.85?"pass" : p>=0.45?"part" : "fail"; }
+function renderResult(){
+  const r = state.result, V = VERDICT[r.verdict];
+
+  // per-control rows, criticals first
+  const order = Object.keys(DOMAINS).sort((a,b)=>(DOMAINS[b].critical-DOMAINS[a].critical) || (r.domPct[a]-r.domPct[b]));
+  const rows = order.map(k=>{
+    const p=r.domPct[k], st=statusOf(p), d=DOMAINS[k];
+    const badge = st==="pass"?["b-pass","Pass"] : st==="part"?["b-part","Partial"] : ["b-fail","Gap"];
+    const barCol = st==="pass"?"var(--bind)":st==="part"?"var(--warn)":"var(--risk)";
+    const note = st==="pass" ? "Meets what carriers look for." : FIXES[k];
+    return `<div class="ctrl">
+      <span class="badge ${badge[0]}">${badge[1]}</span>
+      <div class="body">
+        <h4>${d.ic} ${d.name} ${d.critical?'<span style="font-family:IBM Plex Mono,monospace;font-size:9px;letter-spacing:.1em;color:var(--risk)">★ CRITICAL</span>':''}</h4>
+        <div class="note">${esc(note)}</div>
+      </div>
+      <span class="bar"><i style="width:${Math.round(p*100)}%;background:${barCol}"></i></span>
+    </div>`;
+  }).join("");
+
+  // top fixes: weighted gaps, exclude passes
+  const gaps = order
+    .map(k=>({k, p:r.domPct[k], weight:(1-r.domPct[k])*(DOMAINS[k].critical?1.6:1)}))
+    .filter(x=>x.p<0.85)
+    .sort((a,b)=>b.weight-a.weight)
+    .slice(0,3);
+  const fixHtml = gaps.length ? gaps.map(g=>`
+    <div class="fix"><span class="n"></span>
+      <div><h4>${DOMAINS[g.k].name}</h4><p>${esc(FIXES[g.k])}</p></div>
+    </div>`).join("")
+    : `<div class="fix"><span class="n"></span><div><h4>Keep your evidence current</h4>
+        <p>You're in good shape — the work now is keeping screenshots, restore logs, and training records fresh for each renewal.</p></div></div>`;
+
+  const renewalUrgent = state.profile.renewal==="Inside 3 weeks";
+
+  app.innerHTML = `
+  <section class="panel fade d1" style="overflow:hidden">
+    <div class="verdict-head">
+      <div class="eyebrow" style="color:var(--gold)">ClearToBind · Insurability Assessment</div>
+      <div style="margin-top:22px">
+        <div class="stamp ${V.stamp}">
+          <span class="verb">Underwriting Outlook</span>
+          <span class="word">${V.word}</span>
+        </div>
+      </div>
+      <div class="scoreline">Readiness score &nbsp; <b>${r.overall}</b> <span style="font-size:13px">/ 100</span></div>
+      <p class="vsummary">${V.sum}</p>
+    </div>
+
+    <div class="impact">
+      <span class="ic">${V.icon}</span>
+      <div>
+        <div class="t">Likely premium impact</div>
+        <div class="b">${V.impact}</div>
+        <small>Indicative only — directional guidance based on your answers, not a quote or coverage decision.</small>
+      </div>
+    </div>
+
+    <div class="sec-title">Control-by-control scorecard</div>
+    <div class="ctrl-list">${rows}</div>
+
+    <div class="sec-title">Your highest-leverage fixes</div>
+    <div class="fixes">${fixHtml}</div>
+
+    <div class="cta-block">
+      <div class="eyebrow">Next step</div>
+      <h3>${renewalUrgent ? "Your renewal is close — let's triage it." : "Turn this scorecard into a clean submission."}</h3>
+      <p>${renewalUrgent
+        ? "With a deadline inside three weeks, the move is a rapid triage: what's salvageable now, what to disclose accurately, and a 10-day fix list. Book a 30-minute consult."
+        : "A flat-fee Readiness Audit gets every gap above closed and evidenced in about two weeks — no software to buy, no managed-services contract. Book a 30-minute consult to scope it."}</p>
+      <div class="btn-row">
+        <a href="https://cleartobind.com" class="btn bind no-print">Book a 30-minute consult &nbsp;→</a>
+        <button class="btn ghost no-print" style="color:#c7d0db;border-color:rgba(255,255,255,.25)" onclick="window.print()">Save / print my result</button>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      This Readiness Scorecard is an indicative self-assessment based on the answers provided. It is not an
+      insurance quote, a coverage decision, or a warranty of insurability, and it does not constitute legal or
+      professional advice. Underwriting outcomes are determined solely by carriers. You remain the attesting
+      party on any insurance application.
+    </div>
+
+    <div class="btn-row no-print" style="margin:24px 30px 30px">
+      <button class="btn ghost" onclick="restart()">↻ Retake the assessment</button>
+    </div>
+  </section>`;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ---------- nav ---------- */
+function go(step){ state.step=step; if(step==="quiz") state.qi=0; render(); window.scrollTo({top:0,behavior:"instant"}); }
+function restart(){ state.answers={}; state.profile={}; state.qi=0; go('intro'); }
+
+// keyboard: number keys pick options on quiz
+document.addEventListener("keydown",e=>{
+  if(state.step==="quiz"){
+    const Q=QUESTIONS[state.qi];
+    const n=parseInt(e.key);
+    if(n>=1 && n<=Q.o.length) answer(state.qi,n-1);
+    if(e.key==="Backspace") prevQ();
+  }
+});
+
+render();
+</script>
+</body>
+</html>
