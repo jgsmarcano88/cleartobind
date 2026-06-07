@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage — English -->
   <url>
     <loc>https://cleartobind.com/</loc>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cleartobind.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cleartobind.com/index-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cleartobind.com/"/>
   </url>
+
+  <!-- Homepage — Spanish -->
+  <url>
+    <loc>https://cleartobind.com/index-es.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cleartobind.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cleartobind.com/index-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cleartobind.com/"/>
+  </url>
+
+  <!-- Scorecard — English -->
   <url>
     <loc>https://cleartobind.com/cleartobind-scorecard.html</loc>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cleartobind.com/cleartobind-scorecard.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cleartobind.com/cleartobind-scorecard-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cleartobind.com/cleartobind-scorecard.html"/>
   </url>
+
+  <!-- Scorecard — Spanish -->
+  <url>
+    <loc>https://cleartobind.com/cleartobind-scorecard-es.html</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cleartobind.com/cleartobind-scorecard.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cleartobind.com/cleartobind-scorecard-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cleartobind.com/cleartobind-scorecard.html"/>
+  </url>
+
 </urlset>
