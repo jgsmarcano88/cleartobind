@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ClearToBind — Cyber Insurance Readiness Scorecard</title>
-<meta name="description" content="Free 3-minute cyber insurance readiness scorecard. Answer 15 questions and get a clear insurability verdict, a 0–100 score, and your top fixes — no email required to see your result." />
-<link rel="canonical" href="https://cleartobind.com/cleartobind-scorecard.html" />
+<title>ClearToBind — Evaluación de Preparación para Seguro Cibernético</title>
+<meta name="description" content="Evaluación gratuita de preparación para seguro cibernético en 3 minutos. Responde 15 preguntas y obtén un veredicto claro de asegurabilidad, una puntuación de 0 a 100 y tus principales soluciones — sin correo electrónico para ver tu resultado." />
+<link rel="canonical" href="https://cleartobind.com/cleartobind-scorecard-es.html" />
 <link rel="alternate" hreflang="en" href="https://cleartobind.com/cleartobind-scorecard.html" />
 <link rel="alternate" hreflang="es" href="https://cleartobind.com/cleartobind-scorecard-es.html" />
 <link rel="alternate" hreflang="x-default" href="https://cleartobind.com/cleartobind-scorecard.html" />
@@ -13,15 +13,15 @@
 <meta name="theme-color" content="#15233B" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ClearToBind" />
-<meta property="og:title" content="Free Cyber Insurance Readiness Scorecard — ClearToBind" />
-<meta property="og:description" content="Will you pass cyber insurance underwriting? 15 questions, 3 minutes, a clear verdict and your top fixes." />
-<meta property="og:url" content="https://cleartobind.com/cleartobind-scorecard.html" />
+<meta property="og:title" content="Evaluación Gratuita de Preparación para Seguro Cibernético — ClearToBind" />
+<meta property="og:description" content="¿Pasarás la suscripción del seguro cibernético? 15 preguntas, 3 minutos, un veredicto claro y tus principales soluciones." />
+<meta property="og:url" content="https://cleartobind.com/cleartobind-scorecard-es.html" />
 <meta property="og:image" content="https://cleartobind.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Free Cyber Insurance Readiness Scorecard — ClearToBind" />
-<meta name="twitter:description" content="Will you pass cyber insurance underwriting? 15 questions, 3 minutes, a clear verdict." />
+<meta name="twitter:title" content="Evaluación Gratuita de Preparación para Seguro Cibernético — ClearToBind" />
+<meta name="twitter:description" content="¿Pasarás la suscripción del seguro cibernético? 15 preguntas, 3 minutos, un veredicto claro." />
 <meta name="twitter:image" content="https://cleartobind.com/og-image.png" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -307,19 +307,19 @@
 <body>
 <div class="wrap">
   <header class="mast">
-    <a class="brand" href="index.html">
+    <a class="brand" href="index-es.html">
       <svg class="seal" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="32" cy="32" r="29.5" fill="#FFFDF8" stroke="#1C6E54" stroke-width="2.6"/><circle cx="32" cy="32" r="24.5" fill="none" stroke="#1C6E54" stroke-width="1.6"/><path d="M20.5 33 l8 8 l15.5 -18.5" fill="none" stroke="#1C6E54" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span class="mark">Clear<b>To</b>Bind</span>
     </a>
     <div class="mast-right">
-      <a class="langtoggle" href="cleartobind-scorecard-es.html" hreflang="es">Español</a>
-      <a class="backlink" href="index.html">← Back to site</a>
+      <a class="langtoggle" href="cleartobind-scorecard.html" hreflang="en">English</a>
+      <a class="backlink" href="index-es.html">← Volver al sitio</a>
     </div>
   </header>
 
   <main id="app"></main>
 
-  <div class="footer">cleartobind.com · Get insurable in two weeks · Flat fee, no lock-in</div>
+  <div class="footer">cleartobind.com · Vuélvete asegurable en dos semanas · Tarifa plana, sin ataduras</div>
 </div>
 
 <script>
@@ -329,76 +329,76 @@
    ============================================================ */
 
 const DOMAINS = {
-  mfa:      {name:"Multi-Factor Authentication", ic:"🔐", critical:true},
-  edr:      {name:"Endpoint Detection (EDR/MDR)", ic:"🛡️", critical:true},
-  backup:   {name:"Backups & Recovery",          ic:"💾", critical:true},
-  ir:       {name:"Incident Response Plan",       ic:"📋", critical:true},
-  patch:    {name:"Patch Management",             ic:"🩹", critical:false},
-  train:    {name:"Security Awareness Training",  ic:"🎓", critical:false},
-  pam:      {name:"Privileged Access",            ic:"🗝️", critical:false},
-  vendor:   {name:"Vendor / Third-Party Risk",    ic:"🔗", critical:false},
+  mfa:      {name:"Autenticación multifactor", ic:"🔐", critical:true},
+  edr:      {name:"Detección en endpoints (EDR/MDR)", ic:"🛡️", critical:true},
+  backup:   {name:"Respaldos y recuperación",          ic:"💾", critical:true},
+  ir:       {name:"Plan de respuesta a incidentes",       ic:"📋", critical:true},
+  patch:    {name:"Gestión de parches",             ic:"🩹", critical:false},
+  train:    {name:"Capacitación en concientización",  ic:"🎓", critical:false},
+  pam:      {name:"Acceso privilegiado",            ic:"🗝️", critical:false},
+  vendor:   {name:"Riesgo de proveedores / terceros",    ic:"🔗", critical:false},
 };
 
 // 15 scored questions. score = fraction (0..1) of the weight.
 const QUESTIONS = [
-  {d:"mfa", w:10, q:"Is multi-factor authentication enforced — required, not optional — on email, remote access (VPN/RDP), and all admin accounts?",
-   o:[["Yes, enforced everywhere",1],["Enforced on email only",.5],["Optional or partial",.25],["No, or not sure",0]]},
-  {d:"mfa", w:8, q:"Could you produce screenshots today proving MFA is actually enforced?",
-   o:[["Yes, readily",1],["Probably, with some effort",.5],["No — it'd be a scramble",0]], proof:true},
+  {d:"mfa", w:10, q:"¿La autenticación multifactor está aplicada — obligatoria, no opcional — en el correo, el acceso remoto (VPN/RDP) y todas las cuentas de administrador?",
+   o:[["Sí, aplicada en todo",1],["Solo aplicada en el correo",.5],["Opcional o parcial",.25],["No, o no estoy seguro",0]]},
+  {d:"mfa", w:8, q:"¿Podrías mostrar capturas de pantalla hoy mismo que comprueben que el MFA está realmente aplicado?",
+   o:[["Sí, fácilmente",1],["Probablemente, con algo de esfuerzo",.5],["No — sería un apuro",0]], proof:true},
 
-  {d:"edr", w:10, q:"Do all endpoints — laptops, desktops, servers, and Macs — run modern EDR/MDR, not just traditional antivirus?",
-   o:[["Yes, every device",1],["Most devices covered",.5],["Some — or AV only",.2],["No, or not sure",0]]},
-  {d:"edr", w:6, q:"Is someone actively monitoring and responding to security alerts?",
-   o:[["Yes — 24/7 managed (MDR)",1],["Business-hours monitoring",.6],["Alerts go to an inbox, no process",.25],["No one is watching",0]]},
+  {d:"edr", w:10, q:"¿Todos los dispositivos — laptops, computadoras de escritorio, servidores y Macs — tienen EDR/MDR moderno, no solo antivirus tradicional?",
+   o:[["Sí, todos los dispositivos",1],["La mayoría de los dispositivos",.5],["Algunos — o solo antivirus",.2],["No, o no estoy seguro",0]]},
+  {d:"edr", w:6, q:"¿Alguien monitorea activamente y responde a las alertas de seguridad?",
+   o:[["Sí — gestionado 24/7 (MDR)",1],["Monitoreo en horario laboral",.6],["Las alertas llegan a un buzón, sin proceso",.25],["Nadie las vigila",0]]},
 
-  {d:"backup", w:8, q:"Are your backups both offsite AND immutable (ransomware-resistant — can't be altered or deleted)?",
-   o:[["Yes — offsite and immutable",1],["Offsite, but not immutable",.4],["Local backups only",.15],["No, or not sure",0]]},
-  {d:"backup", w:8, q:"Have you completed and documented a test restore in the last 12 months?",
-   o:[["Yes — documented",1],["Restored, but not documented",.5],["No test restore done",0]], proof:true},
+  {d:"backup", w:8, q:"¿Tus respaldos son externos Y a la vez inmutables (resistentes a ransomware — no se pueden alterar ni eliminar)?",
+   o:[["Sí — externos e inmutables",1],["Externos, pero no inmutables",.4],["Solo respaldos locales",.15],["No, o no estoy seguro",0]]},
+  {d:"backup", w:8, q:"¿Has completado y documentado una restauración de prueba en los últimos 12 meses?",
+   o:[["Sí — con documentación",1],["Restauré, pero sin documentar",.5],["No se hizo restauración de prueba",0]], proof:true},
 
-  {d:"ir", w:7, q:"Do you have a written incident response plan that's current?",
-   o:[["Yes — written and current",1],["An outdated or partial draft",.4],["No written plan",0]]},
-  {d:"ir", w:5, q:"Has that plan been tested with a tabletop exercise in the last 12 months?",
-   o:[["Yes, within 12 months",1],["More than a year ago",.4],["Never tested",0]]},
+  {d:"ir", w:7, q:"¿Tienes un plan de respuesta a incidentes por escrito y actualizado?",
+   o:[["Sí — por escrito y actualizado",1],["Un borrador desactualizado o parcial",.4],["No hay plan por escrito",0]]},
+  {d:"ir", w:5, q:"¿Ese plan se ha probado con un ejercicio de simulación en los últimos 12 meses?",
+   o:[["Sí, en los últimos 12 meses",1],["Hace más de un año",.4],["Nunca se ha probado",0]]},
 
-  {d:"patch", w:5, q:"Is there a written patch-management policy with defined timelines/SLAs?",
-   o:[["Yes — documented with SLAs",1],["Informal, no written policy",.4],["No policy",0]]},
-  {d:"patch", w:5, q:"Can you show evidence that patches are applied consistently?",
-   o:[["Yes — reports available",1],["Somewhat — partial records",.5],["No evidence on hand",0]], proof:true},
+  {d:"patch", w:5, q:"¿Existe una política de gestión de parches por escrito con plazos/SLAs definidos?",
+   o:[["Sí — documentada con SLAs",1],["Informal, sin política escrita",.4],["Sin política",0]]},
+  {d:"patch", w:5, q:"¿Puedes mostrar evidencia de que los parches se aplican de forma constante?",
+   o:[["Sí — hay reportes disponibles",1],["Más o menos — registros parciales",.5],["Sin evidencia a la mano",0]], proof:true},
 
-  {d:"train", w:8, q:"Does all staff complete security-awareness training annually, with completion records kept?",
-   o:[["Yes — with completion records",1],["Training happens, no records",.5],["Ad hoc / occasional",.25],["No training",0]]},
+  {d:"train", w:8, q:"¿Todo el personal completa capacitación en concientización de seguridad cada año, con registros de finalización guardados?",
+   o:[["Sí — con registros de finalización",1],["Hay capacitación, pero sin registros",.5],["Esporádica / ocasional",.25],["Sin capacitación",0]]},
 
-  {d:"pam", w:5, q:"Is privileged/admin access limited to a documented least-privilege model?",
-   o:[["Yes — documented",1],["Limited, but not documented",.5],["Most users are local admins",.1],["Not sure",0]]},
-  {d:"pam", w:5, q:"Are admin accounts kept separate from everyday user accounts?",
-   o:[["Yes — fully separated",1],["For some accounts",.5],["No separation",0]]},
+  {d:"pam", w:5, q:"¿El acceso privilegiado/de administrador está limitado a un modelo documentado de mínimo privilegio?",
+   o:[["Sí — con documentación",1],["Limitado, pero sin documentar",.5],["La mayoría son administradores locales",.1],["No estoy seguro",0]]},
+  {d:"pam", w:5, q:"¿Las cuentas de administrador se mantienen separadas de las cuentas de usuario diario?",
+   o:[["Sí — totalmente separadas",1],["En algunas cuentas",.5],["Sin separación",0]]},
 
-  {d:"vendor", w:5, q:"Do you review the security posture (e.g. SOC 2 reports) of key SaaS vendors?",
-   o:[["Yes — tracked and reviewed",1],["Informally, sometimes",.4],["No",0]]},
-  {d:"vendor", w:5, q:"Do you keep a current inventory of vendors that can access your data?",
-   o:[["Yes — kept current",1],["Partial list",.5],["No inventory",0]]},
+  {d:"vendor", w:5, q:"¿Revisas la postura de seguridad (p. ej. reportes SOC 2) de los proveedores SaaS clave?",
+   o:[["Sí — registrado y revisado",1],["Informalmente, a veces",.4],["No",0]]},
+  {d:"vendor", w:5, q:"¿Mantienes un inventario actualizado de los proveedores que pueden acceder a tus datos?",
+   o:[["Sí — actualizado",1],["Lista parcial",.5],["Sin inventario",0]]},
 ];
 
 const PROFILE = [
-  {k:"industry", label:"What kind of business is this?", multi:false,
-   o:["Professional services (law, accounting, advisory)","Healthcare-adjacent (dental, clinic, billing)","Construction / contracting","Real estate","Manufacturing","Government / defense supplier","Other"]},
-  {k:"size", label:"How many employees?", multi:false,
-   o:["Under 10","10–25","26–50","51–100","100+"]},
-  {k:"renewal", label:"When is your cyber policy decision due?", multi:false,
-   o:["Inside 3 weeks","30–60 days","60–90 days","No active deadline — just checking"]},
+  {k:"industry", label:"¿Qué tipo de negocio es?", multi:false,
+   o:["Servicios profesionales (legal, contabilidad, asesoría)","Relacionado con salud (dental, clínica, facturación)","Construcción / contratación","Bienes raíces","Manufactura","Proveedor de gobierno / defensa","Otro"]},
+  {k:"size", label:"¿Cuántos empleados?", multi:false,
+   o:["Menos de 10","10–25","26–50","51–100","100+"]},
+  {k:"renewal", label:"¿Cuándo se decide tu póliza cibernética?", multi:false,
+   o:["En menos de 3 semanas","30–60 días","60–90 días","Sin fecha límite — solo explorando"]},
 ];
 
 // per-domain remediation guidance keyed by status
 const FIXES = {
-  mfa:    "Enforce MFA on email, VPN/RDP, and every admin account — then capture the proof screenshots underwriters demand.",
-  edr:    "Replace legacy antivirus with EDR/MDR on every endpoint, including servers and Macs, with alerts going to a real response process.",
-  backup: "Move to offsite, immutable backups and run a documented test restore — the restore evidence is what closes the gap.",
-  ir:     "Adopt a written incident-response plan and run one tabletop exercise so you can attest it's been tested.",
-  patch:  "Put a written patch policy with SLAs in place and turn on reporting so application is evidenced.",
-  train:  "Roll out annual all-staff awareness training and retain the completion certificates.",
-  pam:    "Document a least-privilege model and separate admin accounts from daily-use logins.",
-  vendor: "Build a living vendor inventory and review SOC 2 / security posture for the vendors touching your data.",
+  mfa:    "Aplica MFA en el correo, VPN/RDP y en cada cuenta de administrador — y luego captura las capturas de pantalla que exigen los suscriptores.",
+  edr:    "Reemplaza el antivirus tradicional con EDR/MDR en cada dispositivo, incluyendo servidores y Macs, con alertas que lleguen a un proceso de respuesta real.",
+  backup: "Pásate a respaldos externos e inmutables y realiza una restauración de prueba documentada — la evidencia de la restauración es lo que cierra la brecha.",
+  ir:     "Adopta un plan de respuesta a incidentes por escrito y realiza un ejercicio de simulación para poder declarar que ha sido probado.",
+  patch:  "Establece una política de parches por escrito con SLAs y activa los reportes para evidenciar su aplicación.",
+  train:  "Implementa capacitación anual en concientización para todo el personal y conserva los certificados de finalización.",
+  pam:    "Documenta un modelo de mínimo privilegio y separa las cuentas de administrador de las de uso diario.",
+  vendor: "Crea un inventario de proveedores actualizado y revisa el SOC 2 / la postura de seguridad de los proveedores que tocan tus datos.",
 };
 
 /* ---------- state ---------- */
@@ -418,26 +418,26 @@ function render(){
 function renderIntro(){
   app.innerHTML = `
   <section class="intro">
-    <div class="eyebrow fade d1">Free · 3 minutes · No email required to see your result</div>
-    <h1 class="fade d2">Will you pass cyber<br>insurance underwriting?</h1>
-    <p class="lede fade d3">Carriers now act like auditors. Most small businesses have the right tools but
-      can't <em>prove</em> it — and that's what gets a policy declined or repriced. Answer 15 questions and
-      get a clear, carrier-aligned verdict in minutes.</p>
+    <div class="eyebrow fade d1">Gratis · 3 minutos · Sin correo electrónico para ver tu resultado</div>
+    <h1 class="fade d2">¿Pasarás la suscripción<br>del seguro cibernético?</h1>
+    <p class="lede fade d3">Las aseguradoras ahora actúan como auditores. La mayoría de las pequeñas empresas tienen las herramientas correctas pero
+      no pueden <em>comprobarlo</em> — y eso es lo que hace que rechacen o encarezcan una póliza. Responde 15 preguntas y
+      obtén un veredicto claro y alineado con las aseguradoras en minutos.</p>
 
     <div class="controls-strip fade d3">
       ${Object.values(DOMAINS).map(d=>`<span class="pill">${d.ic} ${d.name}</span>`).join("")}
     </div>
 
     <div class="btn-row fade d4">
-      <button class="btn" onclick="go('profile')">Start the assessment &nbsp;→</button>
+      <button class="btn" onclick="go('profile')">Comenzar la evaluación &nbsp;→</button>
     </div>
-    <p class="fineprint fade d4">Built by a network-security practitioner with 10+ years across the four
-      vendor stacks insurers care about. This is an indicative readiness assessment, not a coverage decision.</p>
+    <p class="fineprint fade d4">Creado por un experto en seguridad de redes con más de 10 años en las cuatro
+      plataformas que les importan a las aseguradoras. Esta es una evaluación indicativa de preparación, no una decisión de cobertura.</p>
 
     <div class="meta-row fade d5">
-      <span><span class="dot"></span><b>15</b>&nbsp;questions</span>
-      <span><span class="dot"></span><b>8</b>&nbsp;control areas</span>
-      <span><span class="dot"></span>maps to the&nbsp;<b>actual</b>&nbsp;questionnaire</span>
+      <span><span class="dot"></span><b>15</b>&nbsp;preguntas</span>
+      <span><span class="dot"></span><b>8</b>&nbsp;áreas de control</span>
+      <span><span class="dot"></span>basado en el&nbsp;<b>cuestionario</b>&nbsp;real</span>
     </div>
   </section>`;
 }
@@ -446,8 +446,8 @@ function renderIntro(){
 function renderProfile(){
   app.innerHTML = `
   <section class="fade d1">
-    <div class="eyebrow">Step 1 of 2 · A little context</div>
-    <h1 style="font-size:clamp(28px,4.5vw,38px);margin-top:10px">First, who are we sizing this up for?</h1>
+    <div class="eyebrow">Paso 1 de 2 · Un poco de contexto</div>
+    <h1 style="font-size:clamp(28px,4.5vw,38px);margin-top:10px">Primero, ¿para quién estamos evaluando esto?</h1>
     <div class="panel" style="padding:30px 30px 26px;margin-top:26px">
       ${PROFILE.map((f,fi)=>`
         <div class="field">
@@ -463,8 +463,8 @@ function renderProfile(){
     </div>
     <div class="btn-row">
       <button class="btn ${profileComplete()?'':''}" ${profileComplete()?'':'disabled style="opacity:.4;cursor:default"'}
-        onclick="${profileComplete()?"go('quiz')":""}">Begin the 15 questions &nbsp;→</button>
-      <button class="btn ghost" onclick="go('intro')">Back</button>
+        onclick="${profileComplete()?"go('quiz')":""}">Comenzar las 15 preguntas &nbsp;→</button>
+      <button class="btn ghost" onclick="go('intro')">Atrás</button>
     </div>
   </section>`;
 }
@@ -484,7 +484,7 @@ function renderQuestion(){
     <div class="qdomain">
       <span class="ic">${dom.ic}</span>
       <span class="name">${dom.name}</span>
-      ${dom.critical?'<span class="crit">Critical control</span>':''}
+      ${dom.critical?'<span class="crit">Control crítico</span>':''}
     </div>
     <div class="qtext">${esc(Q.q)}</div>
     <div class="opt-grid">
@@ -494,8 +494,8 @@ function renderQuestion(){
         </button>`).join("")}
     </div>
     <div class="qnav">
-      <button class="back" ${i===0?'disabled':''} onclick="prevQ()">← Back</button>
-      <span class="hint">${Q.proof?'⚑ Proof question — provability is what carriers check':'Pick the closest match'}</span>
+      <button class="back" ${i===0?'disabled':''} onclick="prevQ()">← Atrás</button>
+      <span class="hint">${Q.proof?'⚑ Pregunta de evidencia — la comprobabilidad es lo que revisan las aseguradoras':'Elige la opción más cercana'}</span>
     </div>
   </section>`;
 }
@@ -539,21 +539,21 @@ function compute(){
 }
 
 const VERDICT = {
-  insurable:  {cls:"v-bind", verb:"Assessment", word:"Likely Insurable", stamp:"v-bind",
-    sum:"Strong across the controls carriers weigh most. With your evidence organized, you're in shape to bind at competitive terms.",
-    impact:"Best-available terms likely. A clean, well-evidenced submission can even earn a credit.",
+  insurable:  {cls:"v-bind", verb:"Evaluación", word:"Probablemente asegurable", stamp:"v-bind",
+    sum:"Sólido en los controles que más pesan para las aseguradoras. Con tu evidencia organizada, estás en condiciones de contratar en términos competitivos.",
+    impact:"Probablemente los mejores términos disponibles. Una solicitud limpia y bien documentada hasta puede ganar un descuento.",
     icon:"✅"},
-  conditions: {cls:"v-warn", verb:"Assessment", word:"Insurable — With Conditions", stamp:"v-warn",
-    sum:"The foundation is there, but a few gaps will surface as subjectivities. Close them before submission and you avoid surprises at bind.",
-    impact:"Expect modest loading or specific subjectivities to satisfy before coverage incepts.",
+  conditions: {cls:"v-warn", verb:"Evaluación", word:"Asegurable — con condiciones", stamp:"v-warn",
+    sum:"La base está, pero algunas brechas saldrán como condiciones. Ciérralas antes de presentar la solicitud y evitarás sorpresas al contratar.",
+    impact:"Espera un recargo moderado o condiciones específicas que cumplir antes de que inicie la cobertura.",
     icon:"⚠️"},
-  risk:       {cls:"v-warn", verb:"Assessment", word:"At Risk", stamp:"v-warn",
-    sum:"Several controls underwriters treat as non-negotiable are incomplete or unprovable. Submitting as-is risks heavy loading or a hold.",
-    impact:"If offered at all, expect significant repricing — or the quote held pending remediation.",
+  risk:       {cls:"v-warn", verb:"Evaluación", word:"En riesgo", stamp:"v-warn",
+    sum:"Varios controles que los suscriptores consideran no negociables están incompletos o no son comprobables. Presentar así arriesga recargos altos o una suspensión.",
+    impact:"Si llega a ofrecerse, espera un encarecimiento significativo — o la cotización en espera hasta remediar.",
     icon:"⚠️"},
-  declined:   {cls:"v-risk", verb:"Assessment", word:"Likely Declined", stamp:"v-risk",
-    sum:"Multiple critical controls are missing. Most carriers decline at this profile — but every one of these is fixable, usually inside a few weeks.",
-    impact:"Likely declined or non-renewed until critical gaps are closed and evidenced.",
+  declined:   {cls:"v-risk", verb:"Evaluación", word:"Probablemente rechazado", stamp:"v-risk",
+    sum:"Faltan varios controles críticos. La mayoría de las aseguradoras rechaza con este perfil — pero cada uno de estos tiene solución, normalmente en pocas semanas.",
+    impact:"Probablemente rechazada o no renovada hasta cerrar y evidenciar las brechas críticas.",
     icon:"⛔"},
 };
 
@@ -568,13 +568,13 @@ function renderResult(){
   const order = Object.keys(DOMAINS).sort((a,b)=>(DOMAINS[b].critical-DOMAINS[a].critical) || (r.domPct[a]-r.domPct[b]));
   const rows = order.map(k=>{
     const p=r.domPct[k], st=statusOf(p), d=DOMAINS[k];
-    const badge = st==="pass"?["b-pass","Pass"] : st==="part"?["b-part","Partial"] : ["b-fail","Gap"];
+    const badge = st==="pass"?["b-pass","Aprobado"] : st==="part"?["b-part","Parcial"] : ["b-fail","Falta"];
     const barCol = st==="pass"?"var(--bind)":st==="part"?"var(--warn)":"var(--risk)";
-    const note = st==="pass" ? "Meets what carriers look for." : FIXES[k];
+    const note = st==="pass" ? "Cumple con lo que buscan las aseguradoras." : FIXES[k];
     return `<div class="ctrl">
       <span class="badge ${badge[0]}">${badge[1]}</span>
       <div class="body">
-        <h4>${d.ic} ${d.name} ${d.critical?'<span style="font-family:IBM Plex Mono,monospace;font-size:9px;letter-spacing:.1em;color:var(--risk)">★ CRITICAL</span>':''}</h4>
+        <h4>${d.ic} ${d.name} ${d.critical?'<span style="font-family:IBM Plex Mono,monospace;font-size:9px;letter-spacing:.1em;color:var(--risk)">★ CRÍTICO</span>':''}</h4>
         <div class="note">${esc(note)}</div>
       </div>
       <span class="bar"><i style="width:${Math.round(p*100)}%;background:${barCol}"></i></span>
@@ -591,66 +591,66 @@ function renderResult(){
     <div class="fix"><span class="n"></span>
       <div><h4>${DOMAINS[g.k].name}</h4><p>${esc(FIXES[g.k])}</p></div>
     </div>`).join("")
-    : `<div class="fix"><span class="n"></span><div><h4>Keep your evidence current</h4>
-        <p>You're in good shape — the work now is keeping screenshots, restore logs, and training records fresh for each renewal.</p></div></div>`;
+    : `<div class="fix"><span class="n"></span><div><h4>Mantén tu evidencia al día</h4>
+        <p>Estás en buena forma — ahora el trabajo es mantener frescas las capturas de pantalla, los registros de restauración y los de capacitación para cada renovación.</p></div></div>`;
 
-  const renewalUrgent = state.profile.renewal==="Inside 3 weeks";
+  const renewalUrgent = state.profile.renewal==="En menos de 3 semanas";
 
   const ribbon = (state.lead && state.lead.email)
-    ? `<div class="ribbon"><span class="ic">✅</span><span>Thanks${state.lead.first?(", "+esc(state.lead.first)):""} — your full breakdown is below. Use "Download PDF" to save or share it.</span></div>`
+    ? `<div class="ribbon"><span class="ic">✅</span><span>Gracias${state.lead.first?(", "+esc(state.lead.first)):""} — tu desglose completo está abajo. Usa "Descargar PDF" para guardarlo o compartirlo.</span></div>`
     : ``;
 
   const detailHtml = `
     ${ribbon}
-    <div class="sec-title">Control-by-control scorecard</div>
+    <div class="sec-title">Evaluación control por control</div>
     <div class="ctrl-list">${rows}</div>
 
-    <div class="sec-title">Your highest-leverage fixes</div>
+    <div class="sec-title">Tus soluciones de mayor impacto</div>
     <div class="fixes">${fixHtml}</div>
 
     <div class="cta-block">
-      <div class="eyebrow">Next step</div>
-      <h3>${renewalUrgent ? "Your renewal is close — let's triage it." : "Turn this scorecard into a clean submission."}</h3>
+      <div class="eyebrow">Siguiente paso</div>
+      <h3>${renewalUrgent ? "Tu renovación está cerca — hagamos un triaje." : "Convierte esta evaluación en una solicitud limpia."}</h3>
       <p>${renewalUrgent
-        ? "With a deadline inside three weeks, the move is a rapid triage: what's salvageable now, what to disclose accurately, and a 10-day fix list. Book a 30-minute consult."
-        : "A flat-fee Readiness Audit gets every gap above closed and evidenced in about two weeks — no software to buy, no managed-services contract. Book a 30-minute consult to scope it."}</p>
+        ? "Con una fecha límite en menos de tres semanas, lo indicado es un triaje rápido: qué se puede salvar ahora, qué declarar con precisión y una lista de soluciones de 10 días. Agenda una consulta de 30 minutos."
+        : "Una Auditoría de Preparación de tarifa plana cierra y evidencia todas las brechas anteriores en unas dos semanas — sin software que comprar, sin contrato de servicios administrados. Agenda una consulta de 30 minutos para definir el alcance."}</p>
       <div class="btn-row">
-        <a href="mailto:hello@cleartobind.com?subject=Cyber%20insurance%20readiness%20consult&body=Hi%20ClearToBind%2C%0A%0AI%20just%20completed%20the%20Readiness%20Scorecard%20and%20I%27d%20like%20to%20book%20a%2030-minute%20consult.%0A%0ACompany%3A%20%0AEmployees%3A%20%0ARenewal%20date%20(if%20any)%3A%20%0A%0AThanks%2C" class="btn bind no-print">Book a 30-minute consult &nbsp;→</a>
-        <button class="btn ghost no-print" style="color:#c7d0db;border-color:rgba(255,255,255,.25)" onclick="window.print()">Download PDF</button>
+        <a href="mailto:hello@cleartobind.com?subject=Consulta%20de%20preparaci%C3%B3n%20para%20seguro%20cibern%C3%A9tico&body=Hola%20ClearToBind%2C%0A%0AAcabo%20de%20completar%20la%20Evaluaci%C3%B3n%20de%20Preparaci%C3%B3n%20y%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20de%2030%20minutos.%0A%0AEmpresa%3A%20%0AEmpleados%3A%20%0AFecha%20de%20renovaci%C3%B3n%20(si%20aplica)%3A%20%0A%0AGracias%2C" class="btn bind no-print">Agenda una consulta de 30 minutos &nbsp;→</a>
+        <button class="btn ghost no-print" style="color:#c7d0db;border-color:rgba(255,255,255,.25)" onclick="window.print()">Descargar PDF</button>
       </div>
     </div>
 
     <div class="disclaimer">
-      This Readiness Scorecard is an indicative self-assessment based on the answers provided. It is not an
-      insurance quote, a coverage decision, or a warranty of insurability, and it does not constitute legal or
-      professional advice. Underwriting outcomes are determined solely by carriers. You remain the attesting
-      party on any insurance application.
+      Esta Evaluación de Preparación es una autoevaluación indicativa basada en las respuestas proporcionadas. No es una
+      cotización de seguro, una decisión de cobertura ni una garantía de asegurabilidad, y no constituye asesoría legal ni
+      profesional. Los resultados de la suscripción los determinan únicamente las aseguradoras. Tú sigues siendo quien
+      declara en cualquier solicitud de seguro.
     </div>
 
     <div class="btn-row no-print" style="margin:24px 30px 30px">
-      <button class="btn ghost" onclick="restart()">↻ Retake the assessment</button>
+      <button class="btn ghost" onclick="restart()">↻ Repetir la evaluación</button>
     </div>`;
 
   app.innerHTML = `
   <section class="panel fade d1" style="overflow:hidden">
     <div class="verdict-head">
-      <div class="eyebrow" style="color:var(--gold)">ClearToBind · Insurability Assessment</div>
+      <div class="eyebrow" style="color:var(--gold)">ClearToBind · Evaluación de asegurabilidad</div>
       <div style="margin-top:22px">
         <div class="stamp ${V.stamp}">
-          <span class="verb">Underwriting Outlook</span>
+          <span class="verb">Pronóstico de suscripción</span>
           <span class="word">${V.word}</span>
         </div>
       </div>
-      <div class="scoreline">Readiness score &nbsp; <b>${r.overall}</b> <span style="font-size:13px">/ 100</span></div>
+      <div class="scoreline">Puntuación de preparación &nbsp; <b>${r.overall}</b> <span style="font-size:13px">/ 100</span></div>
       <p class="vsummary">${V.sum}</p>
     </div>
 
     <div class="impact">
       <span class="ic">${V.icon}</span>
       <div>
-        <div class="t">Likely premium impact</div>
+        <div class="t">Impacto probable en la prima</div>
         <div class="b">${V.impact}</div>
-        <small>Indicative only — directional guidance based on your answers, not a quote or coverage decision.</small>
+        <small>Solo indicativo — orientación direccional basada en tus respuestas, no una cotización ni decisión de cobertura.</small>
       </div>
     </div>
 
@@ -667,32 +667,32 @@ const LEAD_ENDPOINT = "https://formspree.io/f/mjgdybyw";
 function renderGate(){
   return `
   <div class="gate">
-    <div class="eyebrow">Your full report</div>
-    <h3>See exactly where you can prove it — and where you can't.</h3>
+    <div class="eyebrow">Tu reporte completo</div>
+    <h3>Ve exactamente dónde puedes comprobarlo — y dónde no.</h3>
     <div class="glist">
-      <span>Control-by-control scorecard</span>
-      <span>Your top 3 prioritized fixes</span>
-      <span>A shareable PDF</span>
-      <span>Optional copy to your broker</span>
+      <span>Evaluación control por control</span>
+      <span>Tus 3 soluciones prioritarias</span>
+      <span>Un PDF para compartir</span>
+      <span>Copia opcional para tu corredor</span>
     </div>
     <div class="form-row">
-      <div class="fld"><label>First name</label><input id="f_first" type="text" autocomplete="given-name" placeholder="Alex"></div>
-      <div class="fld"><label>Work email</label><input id="f_email" type="email" autocomplete="email" placeholder="alex@yourcompany.com"></div>
+      <div class="fld"><label>Nombre</label><input id="f_first" type="text" autocomplete="given-name" placeholder="Alex"></div>
+      <div class="fld"><label>Correo de trabajo</label><input id="f_email" type="email" autocomplete="email" placeholder="alex@tuempresa.com"></div>
     </div>
     <div class="form-row">
-      <div class="fld"><label>Company</label><input id="f_company" type="text" autocomplete="organization" placeholder="Your company"></div>
-      <div class="fld"><label>Role <span style="color:var(--muted);font-weight:400">(optional)</span></label><input id="f_role" type="text" placeholder="Owner / CFO / COO"></div>
+      <div class="fld"><label>Empresa</label><input id="f_company" type="text" autocomplete="organization" placeholder="Tu empresa"></div>
+      <div class="fld"><label>Rol <span style="color:var(--muted);font-weight:400">(opcional)</span></label><input id="f_role" type="text" placeholder="Dueño / CFO / COO"></div>
     </div>
-    <label class="opt-broker"><input id="f_brokerchk" type="checkbox" onchange="document.getElementById('brokerwrap').style.display=this.checked?'block':'none'"> Email a copy to my insurance broker too</label>
+    <label class="opt-broker"><input id="f_brokerchk" type="checkbox" onchange="document.getElementById('brokerwrap').style.display=this.checked?'block':'none'"> Enviar también una copia a mi corredor de seguros</label>
     <div id="brokerwrap" style="display:none;margin-bottom:14px">
-      <div class="fld"><label>Broker email</label><input id="f_broker" type="email" placeholder="broker@agency.com"></div>
+      <div class="fld"><label>Correo del corredor</label><input id="f_broker" type="email" placeholder="corredor@agencia.com"></div>
     </div>
     <div class="gactions">
-      <button class="btn bind" onclick="submitLead()">Unlock my full report &nbsp;→</button>
-      <button class="skip" onclick="skipGate()">Skip — just show my results on screen</button>
+      <button class="btn bind" onclick="submitLead()">Desbloquear mi reporte completo &nbsp;→</button>
+      <button class="skip" onclick="skipGate()">Omitir — solo muéstrame los resultados en pantalla</button>
     </div>
     <div class="errmsg" id="gate_err"></div>
-    <div class="privacy">We'll email your report and may follow up about getting insurable. No spam, unsubscribe anytime, and we never share your details.</div>
+    <div class="privacy">Te enviaremos tu reporte por correo y podríamos contactarte sobre cómo volverte asegurable. Sin spam, puedes darte de baja cuando quieras, y nunca compartimos tus datos.</div>
   </div>`;
 }
 
@@ -708,10 +708,10 @@ function submitLead(){
   ["f_first","f_email","f_company"].forEach(i=>{const e=document.getElementById(i); if(e)e.classList.remove("err");});
 
   let err="";
-  if(!first){ err="Please add your first name."; mark("f_first"); }
-  else if(!emailOk){ err="Please enter a valid work email."; mark("f_email"); }
-  else if(!company){ err="Please add your company name."; mark("f_company"); }
-  else if(brokerOn && broker && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(broker)){ err="That broker email doesn't look right."; }
+  if(!first){ err="Por favor agrega tu nombre."; mark("f_first"); }
+  else if(!emailOk){ err="Por favor ingresa un correo de trabajo válido."; mark("f_email"); }
+  else if(!company){ err="Por favor agrega el nombre de tu empresa."; mark("f_company"); }
+  else if(brokerOn && broker && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(broker)){ err="Ese correo del corredor no parece válido."; }
   if(err){ if(errEl) errEl.textContent=err; return; }
 
   state.lead={ first, email, company, role, broker:brokerOn?broker:"",
@@ -740,7 +740,7 @@ function sendLead(lead){
       team_size: (lead.profile && lead.profile.size) || "",
       renewal_timing: (lead.profile && lead.profile.renewal) || "",
       submitted_at: lead.capturedAt,
-      _subject: "New ClearToBind lead: " + (lead.company || lead.first || "Scorecard")
+      _subject: "Nuevo lead de ClearToBind: " + (lead.company || lead.first || "Scorecard")
     };
     fetch(LEAD_ENDPOINT,{
       method:"POST",
